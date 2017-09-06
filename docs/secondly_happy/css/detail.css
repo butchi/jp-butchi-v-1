@@ -1,0 +1,25 @@
+body{
+	background-color: #FFF;
+}
+#header{
+	padding: 10px 0;
+	background: #FFF;
+}
+#header header h1{
+color:black;
+font-size: 2em; 
+text-align: center;
+}
+
+#wapper h2{
+	color: #CC6B32;
+	margin: 5px;
+}
+#wapper img{
+	margin: 10px;
+}
+
+#wapper p{
+	vertical-align: middle;
+}
+

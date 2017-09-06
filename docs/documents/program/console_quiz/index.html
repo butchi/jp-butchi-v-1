@@ -1,0 +1,96 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>コンソールクイズ</title>
+<style>
+ol {
+	list-style-type: none;
+}
+
+.q {
+	margin: 10px 0;
+}
+
+.qText, .badge {
+	display: inline;
+}
+
+.badge {
+	font-weight: bold;
+	margin: 0 0 0 10px;
+}
+.badge.correct:before {
+	content: "正解";
+	color: #F00;
+}
+.badge.incorrect:before {
+	content: "不正解";
+	color: #00F;
+}
+</style>
+</head>
+
+<body>
+<h1>コンソールクイズ！</h1>
+<ol>
+    <li class="q"><p class="qText">問1 フィボナッチ数でありかつ累乗数である数は8(=2<sup>3</sup>)だけである</p><p class="badge"></p></li>
+    <li class="q"><p class="qText">問2 iのi乗は実数である（iは虚数単位）</p><p class="badge"></p></li>
+    <li class="q"><p class="qText">問3 すべての整数の個数とすべての実数の個数は等しい</p><p class="badge"></p></li>
+</ol>
+<p class="status">[！] まずはコンソールでhelpと入力しましょう</p>
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+<script>
+window.licker||(window.licker={});
+</script>
+<script>
+(function(win, doc, ns) {
+	"use strict";
+	var qLen = 3;
+	var varArr = ['a1', 'a2', 'a3'];
+	var flagArr = [false, false, false];
+	var ansArr = [false, true, false]
+	var myAnsArr = new Array(qLen);
+	var totalAnswered = 0;
+	var totalCorrect = 0;
+	setInterval(check, 500);
+	
+	function check() {
+		var len = varArr.length;
+		var i;
+		for(i=0; i<len; i++) {
+			if(!flagArr[i]) {
+				var tmpMyAns = window[varArr[i]];
+				if(typeof tmpMyAns !== "undefined") {
+					myAnsArr[i] = tmpMyAns;
+					flagArr[i] = true;
+					judge(i);
+					totalAnswered++;
+					$('.status').html(totalAnswered + "問正解！");
+				}
+			}
+		}
+		if(totalAnswered === qLen) {
+			if(totalCorrect === totalAnswered) {
+				$('.status').html("全問正解！");
+			} else {
+				$('.status').html("全問正解ならず！");
+			}
+		}
+	}
+	
+	function judge(i) {
+		if(myAnsArr[i] === ansArr[i]) {
+			$($('.badge')[i]).addClass('correct');
+			totalCorrect++;
+		} else {
+			$($('.badge')[i]).addClass('incorrect');
+		}
+	}
+	
+	win.help = "\n問1が本当だと思ったらコンソールに以下を入力\na1 = true;\n問1が嘘だと思ったらコンソールに以下を入力\na1 = false;\n";
+}(window, document, licker))
+</script>
+</body>
+</html>

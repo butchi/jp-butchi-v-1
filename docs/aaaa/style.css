@@ -1,0 +1,40 @@
+@charset "utf-8";
+header {
+  padding: 8px;
+}
+
+h1 {
+  color:#000;
+  background:#9cf;
+  padding:20px;
+}
+
+h2 {
+  color:#fff;
+  background:#369;
+  padding:5px
+}
+
+.link {
+  margin: 20px;
+  font-size: 24px;
+}
+
+.social {
+	display: block;
+	float: left;
+	margin: 0;
+	padding: 0;
+}
+
+.social li {
+	list-style-type: none;
+	float: left;
+	margin-right: 4px;
+}
+
+.fb-like {
+	width: 120px;
+	height: 20px;
+}
+

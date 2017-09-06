@@ -1,0 +1,92 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<style TYPE="text/css">
+<!--
+h1 {color:#000000; background:#99ccff; padding:20px}
+h2 {color:#ffffff; background:#336699; padding:5px}
+.description {color:#000; background:#FCC; margin-bottom:40px}
+.kanbun {margin: 0 auto;}
+-->
+</style>
+<title>
+くんどくん
+</title>
+
+<script src="jquery-1.6.4.min.js" type="text/javascript"></script>
+<script>
+var answer_array = [0, 1, 4, 6, 5, 3, 7, 2];
+var japanese_array = ["楚", "人に", "盾と", "矛", "とを", "鬻ぐ", "者", "有り"];
+var selected_array = [false, false, false, false, false, false, false, false];
+var count = 0;
+var isPlaying = true;
+var clear = false;
+function select(n) {
+	if(isPlaying) {
+			if(answer_array[count]==n) {
+			$("#c"+n).css("background-color","#CCC");
+			selected_array[n] = true;
+			$("#information").append(japanese_array[count]);
+			count++;
+			//selected_array.push(n);
+		} else {
+			if(selected_array[n]==false) {
+				$("#c"+n).css("background-color","#C00");
+				isPlaying = false;
+			}
+		}
+		// clearに最初にtrueを入れておきfalseがひとつでもあったら未クリア判定
+		clear = true;
+		for(i=0; i<=7; i++) {
+			if(selected_array[i] == false) {
+				clear = false;
+			}
+		}
+		if(clear) {
+			$("#clear").html("正解！");
+			$("#clear").css("color","#F00");
+		}
+	}
+}
+function reset() {
+	for(n=0; n<=7; n++) {
+		$("#c"+n).css("background-color","#FFF");
+	}
+	count = 0;
+	selected_array = [false, false, false, false, false, false, false, false];
+	isPlaying = true;
+}
+</script>
+</head>
+
+<body>
+
+<h1>くんどくん</h1>
+<div class="description">遊び方: 訓読の順番で画像にマウスカーソルを合わせてください。背景がすべて灰色になったら正解、赤色になったら不正解（ボタンを押してやり直し）です。</div>
+<span id="information"></span>
+<span id="clear"></span><br />
+<button type="reset" onClick="reset()">やり直す</button>
+
+<div class="kanbun" style="width:100px;">
+<div class="character" id="c0"><img src="kanbun1_0.png" onMouseOver="select(0)" /></div>
+<div class="character" id="c1"><img src="kanbun1_1.png" onMouseOver="select(1)" /></div>
+<div class="character" id="c2"><img src="kanbun1_2.png" onMouseOver="select(2)" /></div>
+<div class="character" id="c3"><img src="kanbun1_3.png" onMouseOver="select(3)" /></div>
+<div class="character" id="c4"><img src="kanbun1_4.png" onMouseOver="select(4)" /></div>
+<div class="character" id="c5"><img src="kanbun1_5.png" onMouseOver="select(5)" /></div>
+<div class="character" id="c6"><img src="kanbun1_6.png" onMouseOver="select(6)" /></div>
+<div class="character" id="c7"><img src="kanbun1_7.png" onMouseOver="select(7)" /></div>
+</div>
+
+<!--Google Analystics--><script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-2779957-3");
+pageTracker._trackPageview();
+} catch(err) {}</script><!--/Google Analystics-->
+
+</body>
+</html>

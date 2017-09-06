@@ -1,0 +1,257 @@
+<!doctype html>
+<!-- 05 Click and drag here文言追加（クリックで消える）、padをbodyを同じ広さに -->
+<html>
+<head>
+<meta charset="utf-8">
+<title>Flick Key Circle</title>
+<style>
+#pad {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    user-select: none;
+    -ms-user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    background-color: rgba(255,255,255,0);
+}
+
+.keyCircle {
+    position: absolute;
+}
+
+.key {
+    position: absolute;
+    margin-top: -20px;
+    margin-left: -20px;
+}
+
+.key span {
+    position: absolute;
+    text-align: center;
+    left: 0;
+    right: 0;
+    top: 20px;
+    margin-top: -0.5em;
+    pointer-events: none;
+    user-select: none;
+    -ms-user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+}
+
+.key.white span {
+    color: black;
+}
+.key.white circle {
+    fill: white;
+    stroke: black;
+}
+
+.key.black span {
+    color: white;
+}
+.key.black circle {
+    fill: black;
+    stroke: black;
+}
+
+#help {
+    position: absolute;
+    text-align: center;
+    left: 0;
+    right: 0;
+    top: 50%;
+    margin-top: -0.5em;
+    color: #999;
+    font-size: 36px;
+    cursor: default;
+    pointer-events: none;
+    user-select: none;
+    -ms-user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+}
+</style>
+</head>
+
+<body>
+<div id="help">Click and flick here.</div>
+<div id="pad">
+</div>
+
+<audio id="s0">
+   <source src="audio/C4.wav" type="audio/wav">
+   <source src="audio/C4.mp3" type="audio/mp3">
+</audio>
+<audio id="s1">
+   <source src="audio/Cs4.wav" type="audio/wav">
+   <source src="audio/Cs4.mp3" type="audio/mp3">
+</audio>
+<audio id="s2">
+   <source src="audio/D4.wav" type="audio/wav">
+   <source src="audio/D4.mp3" type="audio/mp3">
+</audio>
+<audio id="s3">
+   <source src="audio/Ds4.wav" type="audio/wav">
+   <source src="audio/Ds4.mp3" type="audio/mp3">
+</audio>
+<audio id="s4">
+   <source src="audio/E4.wav" type="audio/wav">
+   <source src="audio/E4.mp3" type="audio/mp3">
+</audio>
+<audio id="s5">
+   <source src="audio/F4.wav" type="audio/wav">
+   <source src="audio/F4.mp3" type="audio/mp3">
+</audio>
+<audio id="s6">
+   <source src="audio/Fs4.wav" type="audio/wav">
+   <source src="audio/Fs4.mp3" type="audio/mp3">
+</audio>
+<audio id="s7">
+   <source src="audio/G4.wav" type="audio/wav">
+   <source src="audio/G4.mp3" type="audio/mp3">
+</audio>
+<audio id="s8">
+   <source src="audio/Gs4.wav" type="audio/wav">
+   <source src="audio/Gs4.mp3" type="audio/mp3">
+</audio>
+<audio id="s9">
+   <source src="audio/A4.wav" type="audio/wav">
+   <source src="audio/A4.mp3" type="audio/mp3">
+</audio>
+<audio id="s10">
+   <source src="audio/As4.wav" type="audio/wav">
+   <source src="audio/As4.mp3" type="audio/mp3">
+</audio>
+<audio id="s11">
+   <source src="audio/B4.wav" type="audio/wav">
+   <source src="audio/B4.mp3" type="audio/mp3">
+</audio>
+
+<script>
+var x, y; // マウス座標
+var oldX, oldY; // マウス座標の1つ前（マウスカーソルを動かす前）の値
+var kc; // key circle
+var radius = 80; // カーソルからキーまでの距離
+var pitchName = [
+	"C",
+	"C#",
+	"D",
+	"D#",
+	"E",
+	"F",
+	"F#",
+	"G",
+	"G#",
+	"A",
+	"A#",
+	"B"
+];
+function isSharp(pitch) {
+	return (pitchName[pitch].length==2);
+}
+var pad = document.getElementById('pad');
+pad.addEventListener('mousedown', onMouseDown);
+
+function KeyCircle(x, y) {
+	this.x = x;
+	this.y = y;
+	this.trajLen = 0;
+	this.obj = document.createElement('div');
+	//this.obj.classList.add('keyCircle');
+	this.obj.setAttribute('class', 'keyCircle');
+	this.obj.style.width = '80px';
+	this.obj.style.left = x+'px';
+	this.obj.style.top = y+'px';
+	var i;
+	this.key = new Array(12);
+	for(i=0; i<12; i++) {
+		var keyOffsetX, keyOffsetY;
+		keyOffsetX = radius*Math.cos(2*Math.PI*i/12);
+		keyOffsetY = radius*Math.sin(2*Math.PI*i/12);
+		this.key[i] = new Key(i);
+		this.obj.appendChild(this.key[i].obj);
+		this.key[i].obj.style.left =  keyOffsetX+'px';
+		this.key[i].obj.style.top  = -keyOffsetY+'px';
+		this.key[i].obj.circle.addEventListener("mouseover", startNextFlick(i));
+		//this.key[i].txt.addEventListener("mouseover", startNextFlick(i));
+	}
+}
+function startNextFlick(num) {
+	function f(evt) {
+		document.getElementById('s'+num).play();
+		endFlick();
+		startFlick(evt);
+	}
+	return f;
+}
+
+function Key(pitch) {
+	this.pitch = pitch;
+	this.obj = document.createElement('div');
+	//this.obj.classList.add('key');
+	this.obj.innerHTML += '<svg width="40" height="40"><circle cx="20" cy="20" r="15" fill="gray" stroke="gray" stroke-width="1" /></svg>';
+	this.obj.circle = this.obj.getElementsByTagName('svg')[0].getElementsByTagName('circle')[0];
+	if(isSharp(pitch)) {
+		//this.obj.classList.add('black');
+		this.obj.setAttribute('class', 'key black');
+	} else {
+		this.obj.setAttribute('class', 'key white');
+	}
+	this.txt = document.createElement('span');
+	this.obj.appendChild(this.txt);
+	this.txt.innerHTML = pitchName[pitch];
+}
+
+function onMouseDown(evt) {
+	document.getElementById('help').style.display = 'none';
+	startFlick(evt);
+}
+
+function onMouseMove(evt) {
+	oldX = x;
+	oldY = y;
+	x = evt.clientX;
+	y = evt.clientY;
+	kc.trajLen += Math.sqrt(Math.pow(x-oldX,2)+Math.pow(y-oldY,2));
+}
+
+function onMouseUp(evt) {
+	endFlick();
+	this.removeEventListener('mousemove', onMouseMove);
+}
+
+function startFlick(evt) {
+	console.log(evt);
+	x = evt.clientX;
+	y = evt.clientY;
+	console.log('startFlick', x, y);
+	kc = new KeyCircle(x, y);
+	pad.appendChild(kc.obj);
+	evt.target.addEventListener('mousemove', onMouseMove);
+	evt.target.addEventListener('mouseup', onMouseUp);
+}
+
+function endFlick() {
+	console.log('endFlick', x, y);
+	pad.removeChild(kc.obj);
+}
+
+/*
+function rad2pitch(rad) {
+	var rot = rad/(2*Math.PI);
+	rot = (rot<0)?(rot+1):rot;
+	var pitch = Math.floor(rot*12);
+	return pitch;
+}
+*/
+//pad.appendChild((new KeyCircle(100, 100)).obj);
+</script>
+
+</body>
+</html>

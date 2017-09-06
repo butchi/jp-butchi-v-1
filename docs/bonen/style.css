@@ -1,0 +1,244 @@
+/* line 17, ../../../../Ruby200-x64/lib/ruby/gems/2.0.0/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+}
+
+/* line 22, ../../../../Ruby200-x64/lib/ruby/gems/2.0.0/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+html {
+  line-height: 1;
+}
+
+/* line 24, ../../../../Ruby200-x64/lib/ruby/gems/2.0.0/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+ol, ul {
+  list-style: none;
+}
+
+/* line 26, ../../../../Ruby200-x64/lib/ruby/gems/2.0.0/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* line 28, ../../../../Ruby200-x64/lib/ruby/gems/2.0.0/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+caption, th, td {
+  text-align: left;
+  font-weight: normal;
+  vertical-align: middle;
+}
+
+/* line 30, ../../../../Ruby200-x64/lib/ruby/gems/2.0.0/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+q, blockquote {
+  quotes: none;
+}
+/* line 103, ../../../../Ruby200-x64/lib/ruby/gems/2.0.0/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+q:before, q:after, blockquote:before, blockquote:after {
+  content: "";
+  content: none;
+}
+
+/* line 32, ../../../../Ruby200-x64/lib/ruby/gems/2.0.0/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+a img {
+  border: none;
+}
+
+/* line 116, ../../../../Ruby200-x64/lib/ruby/gems/2.0.0/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary {
+  display: block;
+}
+
+/* line 12, ../sass/sass/style.scss */
+body {
+  font-family: 'Lato', sans-serif;
+}
+/* line 15, ../sass/sass/style.scss */
+body .wrapper {
+  width: 100%;
+  height: 100%;
+}
+/* line 20, ../sass/sass/style.scss */
+body .area-panel {
+  position: fixed;
+  z-index: 10;
+  width: 100%;
+  height: 100%;
+}
+/* line 26, ../sass/sass/style.scss */
+body .area-panel .label {
+  position: absolute;
+  top: 50px;
+  width: 100%;
+  text-align: center;
+  font-size: 300px;
+}
+/* line 34, ../sass/sass/style.scss */
+body .area-panel[data-select="x"] {
+  color: black;
+  background-color: white;
+}
+/* line 38, ../sass/sass/style.scss */
+body .area-panel[data-select="a"] {
+  color: white;
+  background-color: blue;
+}
+/* line 42, ../sass/sass/style.scss */
+body .area-panel[data-select="b"] {
+  color: white;
+  background-color: red;
+}
+/* line 46, ../sass/sass/style.scss */
+body .area-panel[data-select="c"] {
+  color: white;
+  background-color: green;
+}
+/* line 50, ../sass/sass/style.scss */
+body .area-panel[data-select="d"] {
+  color: black;
+  background-color: yellow;
+}
+/* line 55, ../sass/sass/style.scss */
+body .area-panel .default {
+  position: absolute;
+  width: 300px;
+  left: 50%;
+  top: 100px;
+  margin-left: -150px;
+  font-size: 30px;
+  line-height: 1.5;
+  text-align: center;
+}
+/* line 67, ../sass/sass/style.scss */
+body .area-panel .default.hide {
+  display: none;
+}
+/* line 73, ../sass/sass/style.scss */
+body .area-select {
+  position: fixed;
+  z-index: 30;
+  bottom: 0;
+  left: 50%;
+  width: 300px;
+  margin-left: -150px;
+  font-size: 0;
+}
+/* line 85, ../sass/sass/style.scss */
+body .area-select > li {
+  display: inline-block;
+  position: relative;
+  width: 60px;
+  height: 100px;
+  box-sizing: border-box;
+  text-align: center;
+  font-size: 36px;
+  margin-bottom: -2px;
+  border: 2px solid #fff;
+  border-radius: 30px 30px 0 0;
+  padding-top: 10px;
+}
+/* line 101, ../sass/sass/style.scss */
+body .area-select > li + li {
+  margin-left: 15px;
+}
+/* line 105, ../sass/sass/style.scss */
+body .area-select .select-a {
+  color: white;
+  background-color: blue;
+}
+/* line 109, ../sass/sass/style.scss */
+body .area-select .select-b {
+  color: white;
+  background-color: red;
+}
+/* line 113, ../sass/sass/style.scss */
+body .area-select .select-c {
+  color: white;
+  background-color: green;
+}
+/* line 117, ../sass/sass/style.scss */
+body .area-select .select-d {
+  color: black;
+  background-color: yellow;
+}
+/* line 123, ../sass/sass/style.scss */
+body .btnClose {
+  position: fixed;
+  z-index: 40;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-box;
+  display: box;
+  -webkit-box-pack: center;
+  -moz-box-pack: center;
+  -ms-box-pack: center;
+  box-pack: center;
+  -webkit-box-align: center;
+  -moz-box-align: center;
+  -ms-box-align: center;
+  box-align: center;
+  right: 10px;
+  top: 10px;
+  width: 60px;
+  height: 60px;
+  border-radius: 30px;
+  font-size: 45px;
+  background-color: #000;
+  color: #fff;
+}
+/* line 129, ../sass/sass/style.scss */
+body .btnClose.hide {
+  display: none;
+}
+/* line 147, ../sass/sass/style.scss */
+body .log {
+  display: none;
+  background-color: rgba(0, 0, 0, 0.6);
+  font-family: "Lucida Console", Monaco, monospace;
+  font-size: 12px;
+  width: 200px;
+  height: 350px;
+  position: fixed;
+  left: 10px;
+  top: 10px;
+  z-index: 20;
+  overflow: auto;
+}
+/* line 160, ../sass/sass/style.scss */
+body .log li {
+  color: #0f0;
+}
+/* line 164, ../sass/sass/style.scss */
+body .log [data-select="a"] {
+  color: white;
+  background-color: blue;
+}
+/* line 168, ../sass/sass/style.scss */
+body .log [data-select="b"] {
+  color: white;
+  background-color: red;
+}
+/* line 172, ../sass/sass/style.scss */
+body .log [data-select="c"] {
+  color: white;
+  background-color: green;
+}
+/* line 176, ../sass/sass/style.scss */
+body .log [data-select="d"] {
+  color: black;
+  background-color: yellow;
+}

@@ -1,0 +1,148 @@
+<html>
+<!-- -02 ‰¹—Ê’²®Amp3’Ç‰Á -->
+<head>
+<title>”üº•ñ</title>
+<style>
+h1 {
+	padding: 10px;
+	background-color: #99f;
+}
+
+#time {
+	font-size: 256px;
+}
+
+#announcer {
+	font-size: 32px;
+}
+
+.announcerLabel {
+	font-size: 16px;
+}
+
+#gender {
+	border: 2px solid;
+}
+#gender.male:after {
+	background-color: #99f;
+	content: "‰";
+}
+#gender.female:after {
+	background-color: #f99;
+	content: "Š";
+}
+#gender.other:after {
+	background-color: #999;
+	content: "H";
+}
+
+</style>
+</head>
+
+<body>
+<h1>”üº•ñ</h1>
+
+<div id="time"></div>
+<div id="announcer"><span class="announcerLabel">“Ç‚İè: </span><span id="gender"></span><span id="name"></span></div>
+
+<audio id="beep0">
+   <source src="audio/beep/s1.wav" type="audio/wav">
+   <source src="audio/beep/s1.mp3" type="audio/mp3">
+</audio>
+
+<audio id="beep1">
+   <source src="audio/beep/s2.wav" type="audio/wav">
+   <source src="audio/beep/s2.mp3" type="audio/mp3">
+</audio>
+
+<audio id="beep2">
+   <source src="audio/beep/s3.wav" type="audio/wav">
+   <source src="audio/beep/s3.mp3" type="audio/mp3">
+</audio>
+
+<audio id="voice0">
+   <source src="audio/voice/a0.wav" type="audio/wav">
+   <source src="audio/voice/a0.mp3" type="audio/mp3">
+</audio>
+
+<audio id="voice1">
+   <source src="audio/voice/a1.wav" type="audio/wav">
+   <source src="audio/voice/a1.mp3" type="audio/mp3">
+</audio>
+
+<audio id="voice2">
+   <source src="audio/voice/a2.wav" type="audio/wav">
+   <source src="audio/voice/a2.mp3" type="audio/mp3">
+</audio>
+
+<audio id="voice3">
+   <source src="audio/voice/a3.wav" type="audio/wav">
+   <source src="audio/voice/a3.mp3" type="audio/mp3">
+</audio>
+
+<script>
+var voiceNo = 0;
+var announcer;
+setInterval(function() {
+	var date = new Date();
+	var hour = date.getHours();
+	var hourTxt = (hour<10)? "0"+hour : String(hour);
+	var min = date.getMinutes();
+	var minTxt = (min<10)? "0"+min : String(min);
+	var sec = date.getSeconds();
+	var secTxt = (sec<10)? "0"+sec : String(sec);
+	var timeTxt = hourTxt + ':' + minTxt + ':' + secTxt;
+	document.getElementById('time').innerHTML = timeTxt;
+	
+	var beep;
+	// •b‚Ì‹@ŠB‰¹
+	if (sec % 10 == 0) {
+		beep = document.getElementById('beep2');
+	} else if ( (sec == 57) || (sec == 58) || (sec == 59) ) {
+		beep = document.getElementById('beep1');
+	} else {
+		beep = document.getElementById('beep0');
+	}
+	beep.volume = 0.2;
+	beep.play();
+	
+	if (sec % 10 == 0) {
+		voiceNo = (voiceNo + 1) % 4;
+		switch (voiceNo) {
+			case 0:
+			announcerGender = "female"
+			announcerTxt = "–_“Ç‚İ‚¿‚á‚ñ—«1";
+			break;
+			
+			case 1:
+			announcerGender = "male"
+			announcerTxt = "–_“Ç‚İ‚¿‚á‚ñ’j«1";
+			break;
+			
+			case 2:
+			announcerGender = "female"
+			announcerTxt = "–_“Ç‚İ‚¿‚á‚ñ—«2";
+			break;
+			
+			case 3:
+			announcerGender = "male"
+			announcerTxt = "–_“Ç‚İ‚¿‚á‚ñ’j«2";
+			break;
+			
+			default:
+			announcerGender = "other"
+			announcerTxt = "‰r‚İl’m‚ç‚¸";
+			break;
+		}
+		document.getElementById('gender').setAttribute('class', announcerGender);
+		document.getElementById('name').innerHTML = announcerTxt;
+	}
+
+	if (sec % 10 == 2) {
+		document.getElementById('voice'+voiceNo).play();
+	}
+}, 1000);
+</script>
+
+</body>
+</html>

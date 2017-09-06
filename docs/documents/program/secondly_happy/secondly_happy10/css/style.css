@@ -1,0 +1,71 @@
+#header{
+	padding: 10px 0;
+}
+#header header h1{
+color:black;
+font-size: 2em; 
+padding:10px;
+}
+
+nav{
+width: 100%
+}
+nav li{
+float:left;
+width:33.33%;
+}
+
+nav li p{
+padding:10px;
+text-align: center;
+border: solid 1px;
+border-color:#505050;
+border-radius: 20px 20px 0 0 / 20px 20px 0 0;
+background: -webkit-gradient(linear, left top, left bottom, from(#D8BFD8), to(#FFF));
+color:#505050;
+text-shadow: 1px 1px 0px #fff;
+
+}
+
+nav li p.now{
+background: -webkit-gradient(linear, left top, left bottom, from(#87CEEB), to(#FFF));
+border-bottom-style:none;
+}
+
+
+.content{
+background-color:#FFF;
+}
+
+.content p{
+padding:10px 5px;
+}
+
+.information {
+	background-color: #87CEEB;
+}
+
+.informationWithDetail {
+	background-color: #CF0;
+}
+
+.informationWithLink {
+	background-color: #CF0;
+}
+
+.twitter {
+	background-color: #66F;
+}
+
+/*clearfix*/
+.clearfix:after {
+content:".";
+display:block;
+clear:both;
+height:0px;
+visibility:hidden;
+}
+
+.clearfix {
+min-height: 1px;
+}

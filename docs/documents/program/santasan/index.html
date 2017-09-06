@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<head>
+<link rel="stylesheet" type="text/css" media="screen" href="index.css" />
+</head>
+<body>
+<h1>3足さん！</h1>
+<div id="field">
+<div id="fieldWithNum0"><div id="field0"></div><div class="equal">=</div><div id="number0"></div></div>
+<div id="fieldWithNumCurrent"><div id="fieldCurrent"></div><div class="equal">=</div><div id="numberCurrent"></div></div>
+<div id="fieldWithNum3"><div id="field3"></div><div class="equal">=</div><div id="number3"></div></div>
+<div id="fieldXor"></div>
+</div>
+<div id="cleared"></div>
+
+<div class="control">
+<label><input type="checkbox" id="field0Check" onClick="toggle0();">元の数</label>
+<label><input type="checkbox" id="field3Check" onClick="toggle3();" checked>3足した数（答え）</label>
+<label><input type="checkbox" id="fieldXorCheck" onClick="toggleStar();" checked>チェックスター</label>
+<label><input type="checkbox" id="numberStyleCheck" onClick="toggleNumberStyle();">2進数表記</label>
+<input type="button" value="次の問題" onClick="next();">
+</div>
+
+<div class="help">
+<h2>ヘルプ</h2>
+<p>緑枠内のワシ達（<span style="display: inline-block; border: solid 2px #0C0;"><img src="img/one.png" width="48" height="48" /><img src="img/zero.png" width="48" height="48" /></span>）をマウスオーバーで選択して反転させるのじゃ。</p>
+<p>そして下のワシ達と同じ並びにするのじゃ。</p>
+<p>一番下のチェックスター（<img src="img/star.png" width="48" height="48" />）はヒントじゃ。チェックスターが全部点灯すれば正解じゃぞ。</p>
+<p>仕組みがわかってきたら3足した数（答え）とチェックスターを非表示にしみてなのじゃ。</p>
+
+</div>
+<script src="index.js"></script>
+</body>
+</html>

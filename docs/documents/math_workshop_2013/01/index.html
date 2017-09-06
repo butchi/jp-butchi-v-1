@@ -1,0 +1,341 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>案件で使える数学講座 第1回 ～1次関数、2次関数～</title>
+<style>
+table.series {
+  margin: 10px;
+}
+table.series th {
+  background-color: #999
+}
+table.series td {
+  padding: 5px;
+  background-color: #CCC;
+  text-align: center;
+}
+
+.series.group1 th, .series.group1 td {
+  width: 1.5em;
+}
+
+.series.group2 th {
+  width: 5em;
+}
+.series.group2 td {
+  width: 1.5em;
+}
+
+.eqnArr1 div, .eqnArr2 div {
+  margin-bottom: 10px;
+}
+
+</style>
+</head>
+
+<body>
+<h1>案件で使える数学講座 第1回 ～1次関数、2次関数～</h1>
+<h2>今回の目標</h2>
+<ul>
+<li>1次関数と2次関数との関係を理解する。</li>
+<li>次回の等速直線運動、放物線運動の基礎を身に付ける。</li>
+</ul>
+
+<h2>1次関数とは</h2>
+<h3>等差数列</h3>
+<table class="series group1">
+<tr><th>n</th><td>0</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>…</td></tr>
+<tr style="color:blue"><th>a<sub>n</sub></th><td>0</td><td>2</td><td>4</td><td>6</td><td>8</td><td>10</td><td>…</td></tr>
+</table>
+
+<table class="series group1">
+<tr><th>n</th><td>0</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>…</td></tr>
+<tr style="color:green"><th>b<sub>n</sub></th><td>0</td><td>5</td><td>10</td><td>15</td><td>20</td><td>25</td><td>…</td></tr>
+</table>
+
+<table class="series group1">
+<tr><th>n</th><td>0</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>…</td></tr>
+<tr style="color:red"><th>c<sub>n</sub></th><td>0</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>…</td></tr>
+</table>
+
+<p><img src="graph_series.png" /></p>
+
+<p><img src="graph_lines.png" /></p>
+
+<p><strong>階差数列</strong>が一定値である数列を<strong>等差数列</strong>といいます。</p>
+<p>等差数列のグラフ（<strong>離散的</strong>）を<strong>連続</strong>化したものが<strong>1次関数</strong>。</p>
+<p>「yはxに<strong>比例</strong>している」といいます。</p>
+<p>比例していることを「線型（<strong>線形</strong>）である」といいます。</p>
+
+<h2>2次関数とは</h2>
+
+<table class="series group2">
+<tr><th>n</th><td>0</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>…</td></tr>
+<tr><th>d<sub>n</sub></th><td>0</td><td>1</td><td>4</td><td>9</td><td>16</td><td>25</td><td>…</td></tr>
+</table>
+
+
+<table class="series group2">
+<tr><th>n</th><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>…</td></tr>
+<tr><th>d<sub>n</sub>-d<sub>n-1</sub></th><td>1</td><td>3</td><td>5</td><td>7</td><td>9</td><td>…</td></tr>
+</table>
+
+<p>2乗の数列の差分（<strong>階差数列</strong>）は等差数列。</p>
+<p>2次関数の「2」のことを<strong>最高次数</strong>と呼びます。</p>
+<p>2次関数の微分は1次関数です。</p>
+
+<h2>漸化式とは</h2>
+<p>前の値から次の値が決まる式。</p>
+<p>変数によって直接求められる式のことを<strong>一般項</strong>と呼びます（a<sub>n</sub>=n<sup>2</sup>+n+1など）。</p>
+
+<p>d<sub>n+1</sub> = d<sub>n</sub>+2n+1</p>
+
+<p><img src="square.png" /></p>
+
+<script type="text/javascript" src="http://jsdo.it/blogparts/yYMY/js?width=512&height=256&view=play"></script>
+
+<h2>0次関数</h2>
+<p>定数のこと。</p>
+<p>微分すると0になります。</p>
+<p>0次関数の積分は1次関数。</p>
+
+<p><img src="graph_lines_static.png" /></p>
+
+<h2>JavaScriptでの2乗の書き方</h2>
+<p><code>y = x * x</code></p>
+<p><code>y = Math.pow(x, 2)</code></p>
+
+<p>上記2つのコードは同じ結果を返します。状況に応じて使い分けましょう。（計算効率を重視するなら前者、変数が長いときは後者、など。）</p>
+<p>言語によっては<code>x^2</code>とか<code>x**2</code>で書ける場合もあります。</p>
+<p>JavaScriptで<code>x^2</code>と書くと「xと2のビット毎の<a href="http://ja.wikipedia.org/wiki/%E6%8E%92%E4%BB%96%E7%9A%84%E8%AB%96%E7%90%86%E5%92%8C" target="_blank">排他的論理和</a>」になってしまうので注意しましょう。</p>
+
+<script type="text/javascript" src="http://jsdo.it/blogparts/8vxj/js?width=512&height=512&view=play"></script>
+
+<h2>微分</h2>
+<p>微小区間の変化量のこと。</p>
+<p>連続関数における、グラフの傾きのこと。</p>
+<p>多項式を微分すると最高次数が1つ減ります。</p>
+
+<h2>積分</h2>
+<p>グラフの面積のこと。</p>
+<p>微分の逆の操作が積分です。</p>
+<p>リーマン積分、ルベーグ積分など、いくつか方法があります。</p>
+<p>微分前の関数に定数が足されていても微分はすべて同じなので、不定積分には積分定数（Cとすることが多い）という数値を付けて表します。</p>
+
+<h2>0次関数⇔1次関数⇔2次関数の関係</h2>
+<p>2次関数を微分すると1次関数になり、1次関数を微分すると0次関数になります。</p>
+<p>例: 
+<div class="eqnArr1">
+<div>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+  <mstyle displaystyle="true">
+    <mfrac>
+      <mrow>
+        <mi> d </mi>
+      </mrow>
+      <mrow>
+        <mi> dx </mi>
+      </mrow>
+    </mfrac>
+    <msup>
+      <mrow>
+        <mi> x </mi>
+      </mrow>
+      <mrow>
+        <mn> 2 </mn>
+      </mrow>
+    </msup>
+    <mo> = </mo>
+    <mn> 2 </mn>
+    <mi> x </mi>
+  </mstyle>
+</math>
+</div>
+
+<div>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+  <mstyle displaystyle="true">
+    <mfrac>
+      <mrow>
+        <mi> d </mi>
+      </mrow>
+      <mrow>
+        <mi> dx </mi>
+      </mrow>
+    </mfrac>
+    <mn> 2 </mn>
+    <mi> x </mi>
+    <mo> = </mo>
+    <mn> 2 </mn>
+  </mstyle>
+</math>
+</div>
+
+<div>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+  <mstyle displaystyle="true">
+    <mfrac>
+      <mrow>
+        <mi> d </mi>
+      </mrow>
+      <mrow>
+        <mi> dx </mi>
+      </mrow>
+    </mfrac>
+    <mn> 2 </mn>
+    <mo> = </mo>
+    <mn> 0 </mn>
+  </mstyle>
+</math>
+</div>
+</div>
+</p>
+
+<p>0次関数を積分すると1次関数になり、1次関数を積分すると2次関数になります。</p>
+<p>例: 
+<div class="eqnArr2">
+<div>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+  <mstyle displaystyle="true">
+    <mo> &#x222B;<!--integral--> </mo>
+    <mn> 0 </mn>
+    <mi> dx </mi>
+    <mo> = </mo>
+    <msub>
+      <mrow>
+        <mi> C </mi>
+      </mrow>
+      <mrow>
+        <mn> 0 </mn>
+      </mrow>
+    </msub>
+  </mstyle>
+</math>
+</div>
+
+<div>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+  <mstyle displaystyle="true">
+    <mo> &#x222B;<!--integral--> </mo>
+    <msub>
+      <mrow>
+        <mi> C </mi>
+      </mrow>
+      <mrow>
+        <mn> 0 </mn>
+      </mrow>
+    </msub>
+    <mi> dx </mi>
+    <mo> = </mo>
+    <msub>
+      <mrow>
+        <mi> C </mi>
+      </mrow>
+      <mrow>
+        <mn> 0 </mn>
+      </mrow>
+    </msub>
+    <mi> x </mi>
+    <mo> + </mo>
+    <msub>
+      <mrow>
+        <mi> C </mi>
+      </mrow>
+      <mrow>
+        <mn> 1 </mn>
+      </mrow>
+    </msub>
+  </mstyle>
+</math>
+</div>
+
+<div>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+  <mstyle displaystyle="true">
+    <msub>
+      <mrow>
+        <mi> C </mi>
+      </mrow>
+      <mrow>
+        <mn> 0 </mn>
+      </mrow>
+    </msub>
+    <mi> x </mi>
+    <mo> + </mo>
+    <msub>
+      <mrow>
+        <mi> C </mi>
+      </mrow>
+      <mrow>
+        <mn> 1 </mn>
+      </mrow>
+    </msub>
+    <mi> dx </mi>
+    <mo> = </mo>
+    <mfrac>
+      <mrow>
+        <msub>
+          <mrow>
+            <mi> C </mi>
+          </mrow>
+          <mrow>
+            <mn> 0 </mn>
+          </mrow>
+        </msub>
+      </mrow>
+      <mrow>
+        <mn> 2 </mn>
+      </mrow>
+    </mfrac>
+    <msup>
+      <mrow>
+        <mi> x </mi>
+      </mrow>
+      <mrow>
+        <mn> 2 </mn>
+      </mrow>
+    </msup>
+    <mo> + </mo>
+    <msub>
+      <mrow>
+        <mi> C </mi>
+      </mrow>
+      <mrow>
+        <mn> 1 </mn>
+      </mrow>
+    </msub>
+    <mi> x </mi>
+    <mo> + </mo>
+    <msub>
+      <mrow>
+        <mi> C </mi>
+      </mrow>
+      <mrow>
+        <mn> 2 </mn>
+      </mrow>
+    </msub>
+  </mstyle>
+</math>
+</div>
+</div>
+
+</p>
+
+
+<h2>まとめ</h2>
+<ul>
+<li>等差数列の連続グラフ版が1次関数</li>
+<li>漸化式を元に数列を計算することができる</li>
+<li>微分をすると最高次数が下がる</li>
+<li>積分をすると最高次数が上がる</li>
+</ul>
+
+<pre class="memo">
+</pre>
+
+<p><a href="../">勉強会トップ</a></p>
+<p><a href="/">Home</a></p>
+
+</body>
+</html>

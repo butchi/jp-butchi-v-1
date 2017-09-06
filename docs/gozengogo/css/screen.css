@@ -1,0 +1,359 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+}
+
+html {
+  line-height: 1;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+caption, th, td {
+  text-align: left;
+  font-weight: normal;
+  vertical-align: middle;
+}
+
+q, blockquote {
+  quotes: none;
+}
+q:before, q:after, blockquote:before, blockquote:after {
+  content: "";
+  content: none;
+}
+
+a img {
+  border: none;
+}
+
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary {
+  display: block;
+}
+
+.btn-base, .box-text .area-question .btn, .box-text .area-education .btn, .box-text .area-lp-content .btn, .box-achievement .btn {
+  font-size: 25px;
+}
+.btn-base .btn-inner, .box-text .area-question .btn .btn-inner, .box-text .area-education .btn .btn-inner, .box-text .area-lp-content .btn .btn-inner, .box-achievement .btn .btn-inner {
+  padding: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.gozen .btn-base .btn-inner, .gozen .box-text .area-question .btn .btn-inner, .box-text .area-question .gozen .btn .btn-inner, .gozen .box-text .area-education .btn .btn-inner, .box-text .area-education .gozen .btn .btn-inner, .gozen .box-text .area-lp-content .btn .btn-inner, .box-text .area-lp-content .gozen .btn .btn-inner, .gozen .box-achievement .btn .btn-inner, .box-achievement .gozen .btn .btn-inner {
+  -webkit-box-shadow: 3px 3px 0 #ff3300;
+  -moz-box-shadow: 3px 3px 0 #ff3300;
+  box-shadow: 3px 3px 0 #ff3300;
+  background-color: white;
+}
+.gogo .btn-base .btn-inner, .gogo .box-text .area-question .btn .btn-inner, .box-text .area-question .gogo .btn .btn-inner, .gogo .box-text .area-education .btn .btn-inner, .box-text .area-education .gogo .btn .btn-inner, .gogo .box-text .area-lp-content .btn .btn-inner, .box-text .area-lp-content .gogo .btn .btn-inner, .gogo .box-achievement .btn .btn-inner, .box-achievement .gogo .btn .btn-inner {
+  -webkit-box-shadow: 3px 3px 0 white;
+  -moz-box-shadow: 3px 3px 0 white;
+  box-shadow: 3px 3px 0 white;
+  background-color: #ff3300;
+}
+.btn-base a, .box-text .area-question .btn a, .box-text .area-education .btn a, .box-text .area-lp-content .btn a, .box-achievement .btn a {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+}
+
+.wrapper {
+  width: 100%;
+  height: 100%;
+  min-height: 400px;
+}
+
+.logo {
+  position: absolute;
+  width: 300px;
+  height: 400px;
+  left: 50%;
+  top: 50%;
+  margin-left: -150px;
+  margin-top: -200px;
+  text-indent: -9999px;
+}
+
+.clock {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-left: -150px;
+  margin-top: -150px;
+  width: 300px;
+  height: 300px;
+}
+
+.bg {
+  position: absolute;
+  width: 50%;
+  height: 100%;
+  min-height: 400px;
+  z-index: -1;
+}
+.bg.bg-left {
+  left: 0%;
+}
+.bg.bg-right {
+  left: 50%;
+}
+
+.gozen.bg {
+  background-color: #ff3300;
+}
+
+.gogo.bg {
+  background-color: white;
+}
+
+.left-half {
+  position: absolute;
+  width: 300px;
+  height: 400px;
+  left: 50%;
+  top: 50%;
+  margin-left: -150px;
+  margin-top: -200px;
+  clip: rect(0 150px 400px 0);
+}
+
+.right-half {
+  position: absolute;
+  width: 300px;
+  height: 400px;
+  left: 50%;
+  top: 50%;
+  margin-left: -150px;
+  margin-top: -200px;
+  clip: rect(0 300px 400px 150px);
+}
+
+.gozen .logo {
+  background-image: url(../img/logo_white.svg);
+}
+.gozen .clock line {
+  stroke: #ff3300;
+}
+.gozen .clock circle, .gozen .clock path {
+  fill: #ff3300;
+}
+.gozen .clock .base circle {
+  fill: white;
+}
+.gozen .clock .hands line {
+  stroke: #ff9966;
+}
+.gozen .box-text, .gozen .box-achievement {
+  color: #ff3300;
+}
+
+.gogo .logo {
+  background-image: url(../img/logo_red.svg);
+}
+.gogo .clock line {
+  stroke: white;
+}
+.gogo .clock circle, .gogo .clock path {
+  fill: white;
+}
+.gogo .clock .base circle {
+  fill: #ff3300;
+}
+.gogo .clock .hands line {
+  stroke: #ff9966;
+}
+.gogo .box-text, .gogo .box-achievement {
+  color: white;
+}
+
+.box-text {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 300px;
+  height: 300px;
+  margin-left: -150px;
+  margin-top: -150px;
+  border-radius: 150px;
+  text-align: center;
+  font-size: 10px;
+  line-height: 16px;
+}
+.box-text .question {
+  font-size: 14px;
+  margin-top: 40px;
+}
+.box-text .area-question {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+.box-text .area-question .question {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 300px;
+  margin-left: -150px;
+}
+.box-text .area-question .btn {
+  position: absolute;
+  bottom: 80px;
+}
+.box-text .area-question .btn.btn-gozen {
+  width: 50%;
+  left: 20px;
+}
+.box-text .area-question .btn.btn-gogo {
+  width: 50%;
+  right: 20px;
+}
+.box-text .area-education, .box-text .area-lp-content {
+  display: none;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+.box-text .area-education .heading, .box-text .area-lp-content .heading {
+  position: absolute;
+  top: 30px;
+  left: 50%;
+  width: 100%;
+  margin-left: -50%;
+  font-size: 20px;
+  line-height: 20px;
+}
+.box-text .area-education .text, .box-text .area-lp-content .text {
+  position: absolute;
+  top: 60px;
+  width: 100%;
+  left: 50%;
+  margin-left: -50%;
+}
+.box-text .area-education .text a, .box-text .area-lp-content .text a {
+  color: inherit;
+}
+.box-text .area-education .btn, .box-text .area-lp-content .btn {
+  position: absolute;
+  bottom: 50px;
+  width: 100%;
+  left: 50%;
+  margin-left: -50%;
+}
+
+.correct, .incorrect {
+  display: none;
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  left: 50%;
+  top: 50%;
+  margin-left: -150px;
+  margin-top: -150px;
+}
+.correct .inner, .incorrect .inner {
+  font-size: 36px;
+  line-height: 300px;
+  text-align: center;
+}
+.gozen .correct .inner, .gozen .incorrect .inner {
+  color: #ff3300;
+}
+.gogo .correct .inner, .gogo .incorrect .inner {
+  color: white;
+}
+
+.box-achievement {
+  display: none;
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  left: 50%;
+  top: 50%;
+  margin-left: -150px;
+  margin-top: -150px;
+}
+.box-achievement .text {
+  position: absolute;
+  top: 80px;
+  left: 50%;
+  margin-left: -50%;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  font-size: 14px;
+  line-height: 20px;
+}
+.box-achievement .btn {
+  position: absolute;
+  bottom: 50px;
+  width: 100%;
+  left: 50%;
+  margin-left: -50%;
+  text-align: center;
+}
+
+.box-achievement.overlay {
+  height: 50px;
+  top: 50%;
+  margin-top: 10px;
+}
+.box-achievement.overlay audio {
+  position: absolute;
+  width: 220px;
+  height: 50px;
+  left: 50%;
+  top: 0;
+  margin-left: -110px;
+}
+
+.box-text .area-lp-content {
+  display: block;
+}
+.box-text .area-lp-content .text {
+  font-size: 10px;
+  line-height: 16px;
+}
+.box-text .area-lp-content .btn {
+  bottom: 70px;
+}
+
+.social {
+  position: fixed;
+  bottom: 10px;
+  width: 100%;
+  text-align: center;
+}
+.social li {
+  display: inline-block;
+}

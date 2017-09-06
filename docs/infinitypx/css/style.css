@@ -1,0 +1,224 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+}
+
+html {
+  line-height: 1;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+caption, th, td {
+  text-align: left;
+  font-weight: normal;
+  vertical-align: middle;
+}
+
+q, blockquote {
+  quotes: none;
+}
+q:before, q:after, blockquote:before, blockquote:after {
+  content: "";
+  content: none;
+}
+
+a img {
+  border: none;
+}
+
+article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
+  display: block;
+}
+
+body {
+  background-color: #fff;
+  color: #666867;
+  font-size: 16px;
+  font-family: "Roboto", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+}
+
+.wrapper {
+  position: relative;
+}
+
+.full {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.stage {
+  overflow: hidden;
+  background-color: #fff;
+  z-index: 1;
+  -moz-user-select: -moz-none;
+  -ms-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+.stage .front {
+  position: relative;
+  z-index: 2000;
+}
+.stage .title {
+  position: relative;
+  font-size: 8rem;
+  padding: 20px 0 0 20px;
+}
+.stage .count {
+  position: relative;
+  font-size: 4rem;
+  padding: 0 0 0 20px;
+}
+.stage .social-buttons {
+  margin-top: 10px;
+  padding: 0 0 0 20px;
+}
+.stage .social-buttons .item {
+  float: left;
+}
+.stage .social-buttons .item + .item {
+  margin-left: 10px;
+}
+
+.zoom-container {
+  display: none;
+  overflow: hidden;
+  z-index: 2;
+}
+
+.block-clip {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.block-zoom {
+  -moz-transform: scale(50, 50);
+  -ms-transform: scale(50, 50);
+  -webkit-transform: scale(50, 50);
+  transform: scale(50, 50);
+}
+
+.sheep {
+  z-index: 1000;
+}
+.sheep .lines,
+.sheep .last-line {
+  background-image: url('../img/Sheep.svg');
+  background-repeat: repeat;
+  background-size: 1px 1px;
+  background-position: 0 0;
+}
+.sheep .lines {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 0px;
+}
+.sheep .last-line {
+  position: absolute;
+  left: 0;
+  top: 0px;
+  width: 0px;
+  height: 1px;
+}
+
+.logo {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  z-index: 3;
+  width: 200px;
+  height: 50px;
+  font-size: 0;
+  text-indent: -9999px;
+  background-image: url('../img/logo.svg');
+}
+
+.control-speed {
+  position: absolute;
+  left: 10px;
+  bottom: 10px;
+  z-index: 3;
+  -moz-user-select: -moz-none;
+  -ms-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+.control-speed .gnsk,
+.control-speed .ksk {
+  display: inline-block;
+  text-align: center;
+  width: 50px;
+  height: 25px;
+  line-height: 25px;
+  border-radius: 3px;
+  background-color: #666867;
+  color: #fff;
+  cursor: pointer;
+}
+.control-speed .gnsk:hover,
+.control-speed .ksk:hover {
+  opacity: 0.7;
+}
+.control-speed .gnsk:active,
+.control-speed .ksk:active {
+  -moz-transform: translate(1px, 1px);
+  -ms-transform: translate(1px, 1px);
+  -webkit-transform: translate(1px, 1px);
+  transform: translate(1px, 1px);
+}
+
+@media screen and (max-width: 640px) {
+  .stage .title {
+    position: relative;
+    font-size: 4rem;
+  }
+  .stage .count {
+    position: relative;
+    font-size: 2rem;
+  }
+}
+body.night {
+  background-color: #666867;
+  color: #fff;
+}
+body.night .stage {
+  background-color: #666867;
+}
+body.night .logo {
+  background-image: url('../img/logo-nega.svg');
+}
+body.night .control-speed .gnsk,
+body.night .control-speed .ksk {
+  background-color: #fff;
+  color: #666867;
+}

@@ -1,0 +1,70 @@
+/*
+table {
+	border-collapse: collapse;
+}
+
+td {
+	width: 20px;
+	height: 20px;
+	border: solid;
+}
+*/
+
+#fieldWithNum0 {
+	display: none;
+}
+
+#field0, #fieldCurrent, #field3, #fieldXor {
+	display: inline-block;
+}
+
+#number0, #numberCurrent, #number3, .equal {
+	display: inline-block;
+}
+
+#fieldCurrent {
+	border: solid 2px #0C0;
+}
+
+.digit {
+	display: inline-block;
+	width : 64px;
+	height: 64px;
+}
+
+.digit.zero {
+	background-image: url(img/zero.png);
+}
+
+.digit.one {
+	background-image: url(img/one.png);
+}
+
+.numberStyle .digit.zero {
+	background-image: url(img/number_zero.png);
+}
+
+.numberStyle .digit.one {
+	background-image: url(img/number_one.png);
+}
+
+/*
+.wrong {
+	background-color: #F66;
+}
+*/
+
+#fieldXor .digit.zero {
+	background-image: url(img/star.png);
+}
+
+#fieldXor .digit.one {
+	background-image: url(img/star.png);
+	opacity: 0.1;
+}
+
+.help {
+	margin-top: 50px;
+	padding-left: 20px;
+	border: dashed 2px;
+}

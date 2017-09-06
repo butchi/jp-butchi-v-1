@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<!-- 01 周期表 -->
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<link href='http://fonts.googleapis.com/css?family=Actor' rel='stylesheet' type='text/css'>
+<title>周期表</title>
+<script src="jquery-1.6.4.min.js" type="text/javascript"></script>
+<style type="text/css">
+table {
+  margin: 10px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+td {
+  width: 20px;
+  height: 20px;
+}
+
+td.annotation {
+  text-align: right;
+  width: 60px;
+  font-size: 10px;
+}
+
+th.number {
+  font-family: 'Actor', sans-serif;
+  font-size: 14px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.element {
+  color:#333333;
+  font-family: 'Actor', sans-serif;
+  font-size: 14px;
+  text-align: center;
+  vertical-align: middle;
+  text-shadow: 1px 1px 1px #000;
+  background: -moz-linear-gradient(left top, #fff, #666); /* Firefox用 */
+  background: -webkit-gradient(linear, left top, right bottom, from(#fff), to(#666)); /* Safari,Google Chrome */
+  -moz-box-shadow: 3px 3px 6px #000; /* Firefox用 */
+  -webkit-box-shadow: 3px 3px 6px #000; /* Safari,Google Chrome用 */
+}
+
+</style>
+<script>
+// 周期表データ from http://ja.wikipedia.org/wiki/%E5%85%83%E7%B4%A0%E3%81%AE%E4%B8%80%E8%A6%A7
+var element = [{"Z":0,"Sym":"St","Japanese":"霊素","English":"Ghostium","Latin":"Spiritium","period":0,"group":0,"type":"Unknown chemical properties","weight_and_u":"0 (0)","derivation":"spirit（魂）"},
+{"Z":1,"Sym":"H","Japanese":"水素","English":"Hydrogen","Latin":"Hydrogenium","period":1,"group":1,"type":"Other non-metals","weight_and_u":"1.00794 (7) ","derivation":"性質：希: hydro（水）+gennao（生じる）"},
+{"Z":2,"Sym":"He","Japanese":"ヘリウム","English":"Helium","Latin":"Helium","period":1,"group":18,"type":"Noble gases","weight_and_u":"4.002602 (2) ","derivation":"場所：太陽上に発見、希: helios（太陽）"},
+{"Z":3,"Sym":"Li","Japanese":"リチウム","English":"Lithium","Latin":"Lithium","period":2,"group":1,"type":"Alkali metals","weight_and_u":"6.941 (2) ","derivation":"他：岩から採取、希: lithos（石）"},
+{"Z":4,"Sym":"Be","Japanese":"ベリリウム","English":"Beryllium","Latin":"Beryllium","period":2,"group":2,"type":"Alkaline earth metals","weight_and_u":"9.012182 (3) ","derivation":"鉱物：緑柱石beryl"},
+{"Z":5,"Sym":"B","Japanese":"ホウ素","English":"Boron","Latin":"Borium","period":2,"group":13,"type":"Metalloids","weight_and_u":"10.811 (7) ","derivation":"鉱物：ホウ砂buraq、ペルシア語: borax‎"},
+{"Z":6,"Sym":"C","Japanese":"炭素","English":"Carbon","Latin":"Carbonium","period":2,"group":14,"type":"Other non-metals","weight_and_u":"12.0107 (8) ","derivation":"性質：可燃物、梵: jval、羅: Carbo"},
+{"Z":7,"Sym":"N","Japanese":"窒素","English":"Nitrogen","Latin":"Nitrogenium","period":2,"group":15,"type":"Other non-metals","weight_and_u":"14.0067 (2) ","derivation":"鉱物：硝石nitrum（希: nitre（硝石）+gennao（生じる））"},
+{"Z":8,"Sym":"O","Japanese":"酸素","English":"Oxygen","Latin":"Oxygenium","period":2,"group":16,"type":"Other non-metals","weight_and_u":"15.9994 (3) ","derivation":"性質：酸の根元、希: oxys（酸味）+ gennao（生じる）"},
+{"Z":9,"Sym":"F","Japanese":"フッ素","English":"Fluorine","Latin":"Fluorum","period":2,"group":17,"type":"Halogens","weight_and_u":"18.9984032 (5) ","derivation":"鉱物：蛍石、羅: fluorite"},
+{"Z":10,"Sym":"Ne","Japanese":"ネオン","English":"Neon","Latin":"Neon","period":2,"group":18,"type":"Noble gases","weight_and_u":"20.1797 (6) ","derivation":"他：「新しい」、希: neos"},
+{"Z":11,"Sym":"Na","Japanese":"ナトリウム","English":"Sodium","Latin":"Natrium","period":3,"group":1,"type":"Alkali metals","weight_and_u":"22.98976928 (2) ","derivation":"性質：ヘブライ語: nether‎（洗剤）またはソーダ、亜: suda‎"},
+{"Z":12,"Sym":"Mg","Japanese":"マグネシウム","English":"Magnesium","Latin":"Magnesium","period":3,"group":2,"type":"Alkaline earth metals","weight_and_u":"24.3050 (6) ","derivation":"鉱物：マグネシアmagnesia alba（ギリシアのマグネシア地区）"},
+{"Z":13,"Sym":"Al","Japanese":"アルミニウム","English":"Aluminum","Latin":"Aluminium","period":3,"group":13,"type":"Post-transition metals","weight_and_u":"26.9815386 (8) ","derivation":"鉱物：明礬石alum、古名アルメンalimen"},
+{"Z":14,"Sym":"Si","Japanese":"ケイ素","English":"Silicon","Latin":"Silicium","period":3,"group":14,"type":"Metalloids","weight_and_u":"28.0855 (3) ","derivation":"鉱物：珪石、希: silex, silicis（火打石）"},
+{"Z":15,"Sym":"P","Japanese":"リン","English":"Phosphorus","Latin":"Phosphorus","period":3,"group":15,"type":"Other non-metals","weight_and_u":"30.973762 (2) ","derivation":"性質：発光、希: phos（光）+phoros（運ぶ者）"},
+{"Z":16,"Sym":"S","Japanese":"硫黄","English":"Sulfur","Latin":"Sulphur","period":3,"group":16,"type":"Other non-metals","weight_and_u":"32.065 (5) ","derivation":"他：ラテン語: sulfurは語源不明。希: theion（燻らせる）の説も"},
+{"Z":17,"Sym":"Cl","Japanese":"塩素","English":"Chlorine","Latin":"Chlorum","period":3,"group":17,"type":"Halogens","weight_and_u":"35.453 (2) ","derivation":"色：単体、希: chloros（黄緑）"},
+{"Z":18,"Sym":"Ar","Japanese":"アルゴン","English":"Argon","Latin":"Argon","period":3,"group":18,"type":"Noble gases","weight_and_u":"39.948 (1) ","derivation":"性質：化合しない、希: an ergon（働かない）"},
+{"Z":19,"Sym":"K","Japanese":"カリウム","English":"Potassium","Latin":"Kalium","period":4,"group":1,"type":"Alkali metals","weight_and_u":"39.0983 (1) ","derivation":"他：木灰から取れるため、亜: kaljan‎（灰）"},
+{"Z":20,"Sym":"Ca","Japanese":"カルシウム","English":"Calcium","Latin":"Calcium","period":4,"group":2,"type":"Alkaline earth metals","weight_and_u":"40.078 (4) ","derivation":"鉱物：石灰石calcite"},
+{"Z":21,"Sym":"Sc","Japanese":"スカンジウム","English":"Scandium","Latin":"Scandium","period":4,"group":3,"type":"Transition metals","weight_and_u":"44.955912 (6) ","derivation":"場所：発見者ニルソンの出身地スカンジナビア"},
+{"Z":22,"Sym":"Ti","Japanese":"チタン","English":"Titanium","Latin":"Titanium","period":4,"group":4,"type":"Transition metals","weight_and_u":"47.867 (1) ","derivation":"神話：地球最初の息子ティタンTitans"},
+{"Z":23,"Sym":"V","Japanese":"バナジウム","English":"Vanadium","Latin":"Vanadium","period":4,"group":5,"type":"Transition metals","weight_and_u":"50.9415 (1) ","derivation":"神話：スカンジナビアの神バナジスVanadis"},
+{"Z":24,"Sym":"Cr","Japanese":"クロム","English":"Chromium","Latin":"Chromium","period":4,"group":6,"type":"Transition metals","weight_and_u":"51.9961 (6) ","derivation":"色：化合物が多色、希: chroma（色）"},
+{"Z":25,"Sym":"Mn","Japanese":"マンガン","English":"Manganese","Latin":"Manganum","period":4,"group":7,"type":"Transition metals","weight_and_u":"54.938045 (5) ","derivation":"鉱物：マンガン鉱（磁鉄鉱）magnes"},
+{"Z":26,"Sym":"Fe","Japanese":"鉄","English":"Iron","Latin":"Ferrum","period":4,"group":8,"type":"Transition metals","weight_and_u":"55.845 (2) ","derivation":"鉱物：鉱物の一般名詞、希: aes、Feは羅: ferrumといわれる"},
+{"Z":27,"Sym":"Co","Japanese":"コバルト","English":"Cobalt","Latin":"Cobaltum","period":4,"group":9,"type":"Transition metals","weight_and_u":"58.933195 (5) ","derivation":"鉱石：コボルト、山の精・悪霊Koboldから"},
+{"Z":28,"Sym":"Ni","Japanese":"ニッケル","English":"Nickel","Latin":"Niccolum","period":4,"group":10,"type":"Transition metals","weight_and_u":"58.6934 (4) ","derivation":"性質：鉱石から銅が取れない、独: nickl（取り得がない）、Kupfernickel（銅の悪魔）"},
+{"Z":29,"Sym":"Cu","Japanese":"銅","English":"Copper","Latin":"Cuprum","period":4,"group":11,"type":"Transition metals","weight_and_u":"63.546 (3) ","derivation":"場所：古代の発掘地キプロス島、羅: Cuprum"},
+{"Z":30,"Sym":"Zn","Japanese":"亜鉛","English":"Zinc","Latin":"Zincum","period":4,"group":12,"type":"Transition metals","weight_and_u":"65.38 (2) ","derivation":"鉱物：亜鉛鉱石zink、独: zinke（尖ったもの）から"},
+{"Z":31,"Sym":"Ga","Japanese":"ガリウム","English":"Gallium","Latin":"Gallium","period":4,"group":13,"type":"Post-transition metals","weight_and_u":"69.723 (1) ","derivation":"場所：発見者ボアボードラン出身国フランスの古名gallia"},
+{"Z":32,"Sym":"Ge","Japanese":"ゲルマニウム","English":"Germanium","Latin":"Germanium","period":4,"group":14,"type":"Metalloids","weight_and_u":"72.64 (1) ","derivation":"場所：発見者ウィンクラー出身国ドイツの古名germania"},
+{"Z":33,"Sym":"As","Japanese":"ヒ素","English":"Arsenic","Latin":"Arsenicum","period":4,"group":15,"type":"Metalloids","weight_and_u":"74.92160 (2) ","derivation":"鉱物：雄黄、希: arsenihon"},
+{"Z":34,"Sym":"Se","Japanese":"セレン","English":"Selenium","Latin":"Selenium","period":4,"group":16,"type":"Other non-metals","weight_and_u":"78.96 (3) ","derivation":"性質：燃焼時に月のように輝く、希: selene（月） （女神セレーネーから）"},
+{"Z":35,"Sym":"Br","Japanese":"臭素","English":"Bromine","Latin":"Bromum","period":4,"group":17,"type":"Halogens","weight_and_u":"79.904 (1) ","derivation":"性質：単体の悪臭、希: bromos（悪臭）"},
+{"Z":36,"Sym":"Kr","Japanese":"クリプトン","English":"Krypton","Latin":"Krypton","period":4,"group":18,"type":"Noble gases","weight_and_u":"83.798 (2) ","derivation":"性質：見つけにくかったこと、希: chryptos（隠者）"},
+{"Z":37,"Sym":"Rb","Japanese":"ルビジウム","English":"Rubidium","Latin":"Rubidium","period":5,"group":1,"type":"Alkali metals","weight_and_u":"85.4678 (3) ","derivation":"色：炎色反応が紅い、ルビー"},
+{"Z":38,"Sym":"Sr","Japanese":"ストロンチウム","English":"Strontium","Latin":"Strontium","period":5,"group":2,"type":"Alkaline earth metals","weight_and_u":"87.62 (1) ","derivation":"場所：鉱物が採れた鉱山Strontian（スコットランド）"},
+{"Z":39,"Sym":"Y","Japanese":"イットリウム","English":"Yttrium","Latin":"Yttrium","period":5,"group":3,"type":"Transition metals","weight_and_u":"88.90585 (2) ","derivation":"場所：鉱物が発見されたイッテルビーYitterby（スウェーデン）"},
+{"Z":40,"Sym":"Zr","Japanese":"ジルコニウム","English":"Zirconium","Latin":"Zirconium","period":5,"group":4,"type":"Transition metals","weight_and_u":"91.224 (2) ","derivation":"鉱物：ジルコン、亜: zarqum‎（宝石の種類）"},
+{"Z":41,"Sym":"Nb","Japanese":"ニオブ","English":"Niobium","Latin":"Niobium","period":5,"group":5,"type":"Transition metals","weight_and_u":"92.90638 (2) ","derivation":"神話：タンタルと共存する（タンタロスの娘ニオベーNiobe）"},
+{"Z":42,"Sym":"Mo","Japanese":"モリブデン","English":"Molybdenum","Latin":"Molybdenum","period":5,"group":6,"type":"Transition metals","weight_and_u":"95.96 (2) ","derivation":"性質：鉛に似ている、希: molybdos（鉛）"},
+{"Z":43,"Sym":"Tc","Japanese":"テクネチウム","English":"Technetium","Latin":"Technetium","period":5,"group":7,"type":"Transition metals","weight_and_u":"[98.9063] ","derivation":"性質：人工的にしか作れない、希: technikos（人工の）"},
+{"Z":44,"Sym":"Ru","Japanese":"ルテニウム","English":"Ruthenium","Latin":"Ruthenium","period":5,"group":8,"type":"Transition metals","weight_and_u":"101.07 (2) ","derivation":"場所：発見地ロシアRusse"},
+{"Z":45,"Sym":"Rh","Japanese":"ロジウム","English":"Rhodium","Latin":"Rhodium","period":5,"group":9,"type":"Transition metals","weight_and_u":"102.90550 (2) ","derivation":"色：化合物のバラ色、希: rodeos"},
+{"Z":46,"Sym":"Pd","Japanese":"パラジウム","English":"Palladium","Latin":"Palladium","period":5,"group":10,"type":"Transition metals","weight_and_u":"106.42 (1) ","derivation":"天体：同じ頃発見された小惑星パラスpallas（女神アテーナーの別名から）"},
+{"Z":47,"Sym":"Ag","Japanese":"銀","English":"Silver","Latin":"Argentum","period":5,"group":11,"type":"Transition metals","weight_and_u":"107.8682 (2) ","derivation":"性質：光沢、ヘブライ語: aurum‎（光）、アングロサクソン語：sioltur"},
+{"Z":48,"Sym":"Cd","Japanese":"カドミウム","English":"Cadmium","Latin":"Cadmium","period":5,"group":12,"type":"Transition metals","weight_and_u":"112.411 (8) ","derivation":"鉱物：黄色鉱石、希: kadmeia（神話の人物カドモスの説も）"},
+{"Z":49,"Sym":"In","Japanese":"インジウム","English":"Indium","Latin":"Indium","period":5,"group":13,"type":"Post-transition metals","weight_and_u":"114.818 (3) ","derivation":"色：炎色反応から、羅: indicum（青藍色）"},
+{"Z":50,"Sym":"Sn","Japanese":"スズ","English":"Tin","Latin":"Stannum","period":5,"group":14,"type":"Post-transition metals","weight_and_u":"118.710 (7) ","derivation":"他：混同されていた合金、羅: stannum"},
+{"Z":51,"Sym":"Sb","Japanese":"アンチモン","English":"Antimony","Latin":"Stibium","period":5,"group":15,"type":"Metalloids","weight_and_u":"121.760 (1) ","derivation":"性質：単独で発見しにくい、鉱物：輝安鉱antimonium"},
+{"Z":52,"Sym":"Te","Japanese":"テルル","English":"Tellurium","Latin":"Tellurium","period":5,"group":16,"type":"Metalloids","weight_and_u":"127.60 (3) ","derivation":"天体：地球、羅: tellus（女神テルス）"},
+{"Z":53,"Sym":"I","Japanese":"ヨウ素","English":"Iodine","Latin":"Iodum","period":5,"group":17,"type":"Halogens","weight_and_u":"126.90447 (3) ","derivation":"色：蒸気が紫色、希: ioeides（スミレ色）"},
+{"Z":54,"Sym":"Xe","Japanese":"キセノン","English":"Xenon","Latin":"Xenon","period":5,"group":18,"type":"Noble gases","weight_and_u":"131.293 (6) ","derivation":"性質：揮発しにくさ）"},
+{"Z":55,"Sym":"Cs","Japanese":"セシウム","English":"Cesium","Latin":"Caesium","period":6,"group":1,"type":"Alkali metals","weight_and_u":"132.9054519 (2) ","derivation":"色：炎色反応から、羅: caesius（青）"},
+{"Z":56,"Sym":"Ba","Japanese":"バリウム","English":"Barium","Latin":"Barium","period":6,"group":2,"type":"Alkaline earth metals","weight_and_u":"137.327 (7) ","derivation":"性質：希: barys、鉱物：バライト（重い石）baryte"},
+{"Z":57,"Sym":"La","Japanese":"ランタン","English":"Lanthanum","Latin":"Lanthanum","period":6,"group":3,"type":"Lanthanides","weight_and_u":"138.90547 (7) ","derivation":"性質：見つけにくかったこと、希: lanthanein（隠れている）"},
+{"Z":58,"Sym":"Ce","Japanese":"セリウム","English":"Cerium","Latin":"Cerium","period":6,"group":3,"type":"Lanthanides","weight_and_u":"140.116 (1) ","derivation":"天体：小惑星セレス）、鉱物：セル石cerite"},
+{"Z":59,"Sym":"Pr","Japanese":"プラセオジム","English":"Praseodymium","Latin":"Praseodymium","period":6,"group":3,"type":"Lanthanides","weight_and_u":"140.90765 (2) ","derivation":"色：化合物が緑色、希: praseo（ニラ）+ didymos（双子）"},
+{"Z":60,"Sym":"Nd","Japanese":"ネオジム","English":"Neodymium","Latin":"Neodymium","period":6,"group":3,"type":"Lanthanides","weight_and_u":"144.242 (3) ","derivation":"他：希: neo（新しい）+didymos（双子）"},
+{"Z":61,"Sym":"Pm","Japanese":"プロメチウム","English":"Promethium","Latin":"Promethium","period":6,"group":3,"type":"Lanthanides","weight_and_u":"[146.9151] ","derivation":"神話：プロメテウス"},
+{"Z":62,"Sym":"Sm","Japanese":"サマリウム","English":"Samarium","Latin":"Samarium","period":6,"group":3,"type":"Lanthanides","weight_and_u":"150.36 (2) ","derivation":"鉱物：サマルスキー石samarskite（サマルスキーは鉱物発見者の名）"},
+{"Z":63,"Sym":"Eu","Japanese":"ユウロピウム","English":"Europium","Latin":"Europium","period":6,"group":3,"type":"Lanthanides","weight_and_u":"151.964 (1) ","derivation":"場所：発見地ヨーロッパ"},
+{"Z":64,"Sym":"Gd","Japanese":"ガドリニウム","English":"Gadolinium","Latin":"Gadolinium","period":6,"group":3,"type":"Lanthanides","weight_and_u":"157.25 (3) ","derivation":"人物：ヨハン・ガドリン、含有鉱物ガドリン石gadliniteにも。"},
+{"Z":65,"Sym":"Tb","Japanese":"テルビウム","English":"Terbium","Latin":"Terbium","period":6,"group":3,"type":"Lanthanides","weight_and_u":"158.92535 (2) ","derivation":"場所：鉱物が発見されたイッテルビー（スウェーデン）"},
+{"Z":66,"Sym":"Dy","Japanese":"ジスプロシウム","English":"Dysprosium","Latin":"Dysprosium","period":6,"group":3,"type":"Lanthanides","weight_and_u":"162.500 (1) ","derivation":"性質：難分離性、希: dysprositos（近づきにくい、得がたい）"},
+{"Z":67,"Sym":"Ho","Japanese":"ホルミウム","English":"Holmium","Latin":"Holmium","period":6,"group":3,"type":"Lanthanides","weight_and_u":"164.93032 (2) ","derivation":"場所：ストックホルムの古名Holmia"},
+{"Z":68,"Sym":"Er","Japanese":"エルビウム","English":"Erbium","Latin":"Erbium","period":6,"group":3,"type":"Lanthanides","weight_and_u":"167.259 (3) ","derivation":"場所：鉱物が発見されたイッテルビー（スウェーデン）"},
+{"Z":69,"Sym":"Tm","Japanese":"ツリウム","English":"Thulium","Latin":"Thulium","period":6,"group":3,"type":"Lanthanides","weight_and_u":"168.93421 (2) ","derivation":"場所：発見地スカンジナビアの町ツールThule"},
+{"Z":70,"Sym":"Yb","Japanese":"イッテルビウム","English":"Ytterbium","Latin":"Ytterbium","period":6,"group":3,"type":"Lanthanides","weight_and_u":"173.054 (5) ","derivation":"場所：鉱物が発見されたイッテルビー（スウェーデン）"},
+{"Z":71,"Sym":"Lu","Japanese":"ルテチウム","English":"Lutetium","Latin":"Lutetium","period":6,"group":3,"type":"Lanthanides","weight_and_u":"174.9668 (1) ","derivation":"場所：発見地パリの古名ルテシアLutetia"},
+{"Z":72,"Sym":"Hf","Japanese":"ハフニウム","English":"Hafnium","Latin":"Hafnium","period":6,"group":4,"type":"Transition metals","weight_and_u":"178.49 (2) ","derivation":"場所：発見地コペンハーゲンの古名Hafnia"},
+{"Z":73,"Sym":"Ta","Japanese":"タンタル","English":"Tantalum","Latin":"Tantalum","period":6,"group":5,"type":"Transition metals","weight_and_u":"180.94788 (2) ","derivation":"神話：酸に難溶な所から、希: Tantalus（タンタロス、渇きに苛まれる者）"},
+{"Z":74,"Sym":"W","Japanese":"タングステン","English":"Tungsten","Latin":"Wolframium","period":6,"group":6,"type":"Transition metals","weight_and_u":"183.84 (1) ","derivation":"鉱物：鉄マンガン重石、典: wolframite（重い石）"},
+{"Z":75,"Sym":"Re","Japanese":"レニウム","English":"Rhenium","Latin":"Rhenium","period":6,"group":7,"type":"Transition metals","weight_and_u":"186.207 (1) ","derivation":"場所：発見地ドイツのライン川"},
+{"Z":76,"Sym":"Os","Japanese":"オスミウム","English":"Osmium","Latin":"Osmium","period":6,"group":8,"type":"Transition metals","weight_and_u":"190.23(3) ","derivation":"性質：化合物の臭さ、希: osme（臭気）"},
+{"Z":77,"Sym":"Ir","Japanese":"イリジウム","English":"Iridium","Latin":"Iridium","period":6,"group":9,"type":"Transition metals","weight_and_u":"192.217 (3) ","derivation":"色：化合物が様々な色、希: iris（虹、女神イーリスに因む）"},
+{"Z":78,"Sym":"Pt","Japanese":"白金","English":"Platinum","Latin":"Platinum","period":6,"group":10,"type":"Transition metals","weight_and_u":"195.084 (9) ","derivation":"性質：銀に似ている、希: platina（銀の縮小名詞）"},
+{"Z":79,"Sym":"Au","Japanese":"金","English":"Gold","Latin":"Aurum","period":6,"group":11,"type":"Transition metals","weight_and_u":"196.966569 (4) ","derivation":"性質：輝く光沢、ラテン語: aurum（金）、ヘブライ語: or‎光、輝く、オーロラと同じ語源）"},
+{"Z":80,"Sym":"Hg","Japanese":"水銀","English":"Mercury","Latin":"Hydrargyrum","period":6,"group":12,"type":"Transition metals","weight_and_u":"200.59 (2) ","derivation":"神話：メルクリウスmercurius"},
+{"Z":81,"Sym":"Tl","Japanese":"タリウム","English":"Thallium","Latin":"Thallium","period":6,"group":13,"type":"Post-transition metals","weight_and_u":"204.3833 (2) ","derivation":"色：炎色反応が鮮やかな緑、羅: thallus、希: thallos"},
+{"Z":82,"Sym":"Pb","Japanese":"鉛","English":"Lead","Latin":"Plumbum","period":6,"group":14,"type":"Post-transition metals","weight_and_u":"207.2 (1) ","derivation":"他：語源不明瞭、羅: plumbum（鉛）"},
+{"Z":83,"Sym":"Bi","Japanese":"ビスマス","English":"Bismuth","Latin":"Bisemutum","period":6,"group":15,"type":"Post-transition metals","weight_and_u":"208.98040 (1) ","derivation":"性質：易溶性、希: wiss majaht（安息香のように溶けやすい）、古代ドイツ語：Wissmuth, Wismut"},
+{"Z":84,"Sym":"Po","Japanese":"ポロニウム","English":"Polonium","Latin":"Polonium","period":6,"group":16,"type":"Metalloids","weight_and_u":"[208.9824] ","derivation":"場所：発見者マリ・キュリーの出身地ポーランド"},
+{"Z":85,"Sym":"At","Japanese":"アスタチン","English":"Astatine","Latin":"Astatum","period":6,"group":17,"type":"Halogens","weight_and_u":"[209.9871] ","derivation":"性質：不安定、希: astatine, astatos（不安定）"},
+{"Z":86,"Sym":"Rn","Japanese":"ラドン","English":"Radon","Latin":"Radon","period":6,"group":18,"type":"Noble gases","weight_and_u":"[222.0176] ","derivation":"性質：ラジウムから生じる、Radiuma+On（0族元素共通語尾）"},
+{"Z":87,"Sym":"Fr","Japanese":"フランシウム","English":"Francium","Latin":"Francium","period":7,"group":1,"type":"Alkali metals","weight_and_u":"[223.0197] ","derivation":"場所：発見地フランス"},
+{"Z":88,"Sym":"Ra","Japanese":"ラジウム","English":"Radium","Latin":"Radium","period":7,"group":2,"type":"Alkaline earth metals","weight_and_u":"[226.0254] ","derivation":"性質：放射線を出す、羅: radi, radius（発射・放射する）"},
+{"Z":89,"Sym":"Ac","Japanese":"アクチニウム","English":"Actinium","Latin":"Actinium","period":7,"group":3,"type":"Actinides","weight_and_u":"[227.0278] ","derivation":"性質：放射線を放つ、希: actis, aktinos（光線・放射線）"},
+{"Z":90,"Sym":"Th","Japanese":"トリウム","English":"Thorium","Latin":"Thorium","period":7,"group":3,"type":"Actinides","weight_and_u":"232.03806 (2) ","derivation":"神話：軍神・雷神トール"},
+{"Z":91,"Sym":"Pa","Japanese":"プロトアクチニウム","English":"Protactinium","Latin":"Protactinium","period":7,"group":3,"type":"Actinides","weight_and_u":"231.03588 (2) ","derivation":"性質：崩壊してアクチニウムになる、希: proto（生じる）+ Actinium"},
+{"Z":92,"Sym":"U","Japanese":"ウラン","English":"Uranium","Latin":"Uranium","period":7,"group":3,"type":"Actinides","weight_and_u":"238.02891 (3) ","derivation":"天体：同年に発見された天王星Uranus"},
+{"Z":93,"Sym":"Np","Japanese":"ネプツニウム","English":"Neptunium","Latin":"Neptunium","period":7,"group":3,"type":"Actinides","weight_and_u":"[237.0482] ","derivation":"天体：海王星Neptune"},
+{"Z":94,"Sym":"Pu","Japanese":"プルトニウム","English":"Plutonium","Latin":"Plutonium","period":7,"group":3,"type":"Actinides","weight_and_u":"[244.0642] ","derivation":"天体：冥王星Pluto"},
+{"Z":95,"Sym":"Am","Japanese":"アメリシウム","English":"Americium","Latin":"Americium","period":7,"group":3,"type":"Actinides","weight_and_u":"[243.0614] ","derivation":"場所：発見地アメリカ"},
+{"Z":96,"Sym":"Cm","Japanese":"キュリウム","English":"Curium","Latin":"Curium","period":7,"group":3,"type":"Actinides","weight_and_u":"[247.0703] ","derivation":"人名：キュリー夫妻"},
+{"Z":97,"Sym":"Bk","Japanese":"バークリウム","English":"Berkelium","Latin":"Berkelium","period":7,"group":3,"type":"Actinides","weight_and_u":"[247.0703] ","derivation":"場所：発見地バークレー"},
+{"Z":98,"Sym":"Cf","Japanese":"カリホルニウム","English":"Californium","Latin":"Californium","period":7,"group":3,"type":"Actinides","weight_and_u":"[251.0796] ","derivation":"場所：発見地カリフォルニア"},
+{"Z":99,"Sym":"Es","Japanese":"アインスタイニウム","English":"Einsteinium","Latin":"Einsteinium","period":7,"group":3,"type":"Actinides","weight_and_u":"[252.0829] ","derivation":"人名：アインシュタイン"},
+{"Z":100,"Sym":"Fm","Japanese":"フェルミウム","English":"Fermium","Latin":"Fermium","period":7,"group":3,"type":"Actinides","weight_and_u":"[257.0951] ","derivation":"人名：エンリコ・フェルミ"},
+{"Z":101,"Sym":"Md","Japanese":"メンデレビウム","English":"Mendelevium","Latin":"Mendelevium","period":7,"group":3,"type":"Actinides","weight_and_u":"[258.0986] ","derivation":"人名：ドミトリ・メンデレーエフ"},
+{"Z":102,"Sym":"No","Japanese":"ノーベリウム","English":"Nobelium","Latin":"Nobelium","period":7,"group":3,"type":"Actinides","weight_and_u":"[259.1009] ","derivation":"人名：アルフレッド・ノーベル"},
+{"Z":103,"Sym":"Lr","Japanese":"ローレンシウム","English":"Lawrencium","Latin":"Lawrencium","period":7,"group":3,"type":"Actinides","weight_and_u":"[260.1053] ","derivation":"人名：アーネスト・ローレンス"},
+{"Z":104,"Sym":"Rf","Japanese":"ラザホージウム","English":"Rutherfordium","Latin":"Rutherfordium","period":7,"group":4,"type":"Transition metals","weight_and_u":"[261.1087] ","derivation":"人名：アーネスト・ラザフォード"},
+{"Z":105,"Sym":"Db","Japanese":"ドブニウム","English":"Dubnium","Latin":"Dubnium","period":7,"group":5,"type":"Transition metals","weight_and_u":"[262.1138] ","derivation":"場所：ドゥルナ"},
+{"Z":106,"Sym":"Sg","Japanese":"シーボーギウム","English":"Seaborgium","Latin":"Seaborgium","period":7,"group":6,"type":"Transition metals","weight_and_u":"[263.1182] ","derivation":"人名：グレン・シーボーグ"},
+{"Z":107,"Sym":"Bh","Japanese":"ボーリウム","English":"Bohrium","Latin":"Bohrium","period":7,"group":7,"type":"Transition metals","weight_and_u":"[262.1229] ","derivation":"人名：ニールス・ボーア"},
+{"Z":108,"Sym":"Hs","Japanese":"ハッシウム","English":"Hassium","Latin":"Hassium","period":7,"group":8,"type":"Transition metals","weight_and_u":"[277] ","derivation":"場所：ヘッセン州の古名ハッシア"},
+{"Z":109,"Sym":"Mt","Japanese":"マイトネリウム","English":"Meitnerium","Latin":"Meitnerium","period":7,"group":9,"type":"Unknown chemical properties","weight_and_u":"[278] ","derivation":"人名：リーゼ・マイトナー"},
+{"Z":110,"Sym":"Ds","Japanese":"ダームスタチウム","English":"Darmstadtium","Latin":"Darmstadtium","period":7,"group":10,"type":"Unknown chemical properties","weight_and_u":"[281] ","derivation":"場所：発見地ダルムシュタット"},
+{"Z":111,"Sym":"Rg","Japanese":"レントゲニウム","English":"Roentgenium","Latin":"Roentgenium","period":7,"group":11,"type":"Unknown chemical properties","weight_and_u":"[284] ","derivation":"人名：ヴィルヘルム・レントゲン"},
+{"Z":112,"Sym":"Cn","Japanese":"コペルニシウム","English":"Copernicium","Latin":"Copernicium","period":7,"group":12,"type":"Transition metals","weight_and_u":"[288] ","derivation":"人名：ニコラウス・コペルニクス"},
+{"Z":113,"Sym":"Uut","Japanese":"ウンウントリウム","English":"Ununtrium","Latin":"Ununtrium","period":7,"group":13,"type":"Unknown chemical properties","weight_and_u":"[293] ","derivation":"元素の系統名"},
+{"Z":114,"Sym":"Uuq","Japanese":"ウンウンクアジウム","English":"Ununquadium","Latin":"Ununquadium","period":7,"group":14,"type":"Unknown chemical properties","weight_and_u":"[298] ","derivation":"元素の系統名"},
+{"Z":115,"Sym":"Uup","Japanese":"ウンウンペンチウム","English":"Ununpentium","Latin":"Ununpentium","period":7,"group":15,"type":"Unknown chemical properties","weight_and_u":"[299] ","derivation":"元素の系統名"},
+{"Z":116,"Sym":"Uuh","Japanese":"ウンウンヘキシウム","English":"Ununhexium","Latin":"Ununhexium","period":7,"group":16,"type":"Unknown chemical properties","weight_and_u":"[302] ","derivation":"元素の系統名"},
+{"Z":117,"Sym":"Uus","Japanese":"ウンウンセプチウム","English":"Ununseptium","Latin":"Ununseptium","period":7,"group":17,"type":"Unknown chemical properties","weight_and_u":"[310] ","derivation":"元素の系統名"},
+{"Z":118,"Sym":"Uuo","Japanese":"ウンウンオクチウム","English":"Ununoctium","Latin":"Ununoctium","period":7,"group":18,"type":"Unknown chemical properties","weight_and_u":"[314] ","derivation":"元素の系統名"}];
+
+</script>
+</head>
+<body>
+	<table>
+		<tr>
+			<th></th>
+			<th class="number">1</th>
+			<th class="number">2</th>
+			<th class="number">3</th>
+			<th class="number">4</th>
+			<th class="number">5</th>
+			<th class="number">6</th>
+			<th class="number">7</th>
+			<th class="number">8</th>
+			<th class="number">9</th>
+			<th class="number">10</th>
+			<th class="number">11</th>
+			<th class="number">12</th>
+			<th class="number">13</th>
+			<th class="number">14</th>
+			<th class="number">15</th>
+			<th class="number">16</th>
+			<th class="number">17</th>
+			<th class="number">18</th>
+		</tr>
+		<tr>
+			<th class="number">1</th>
+			<td id="e1" class="element"></td>
+			<td class="empty"></td>
+			<td class="empty"></td>
+			<td class="empty"></td>
+			<td class="empty"></td>
+			<td class="empty"></td>
+			<td class="empty"></td>
+			<td class="empty"></td>
+			<td class="empty"></td>
+			<td class="empty"></td>
+			<td class="empty"></td>
+			<td class="empty"></td>
+			<td class="empty"></td>
+			<td class="empty"></td>
+			<td class="empty"></td>
+			<td class="empty"></td>
+			<td class="empty"></td>
+			<td id="e2" class="element"></td>
+		</tr>
+		<tr>
+			<th class="number">2</th>
+			<td id="e3" class="element"></td>
+			<td id="e4" class="element"></td>
+			<td class="empty"></td>
+			<td class="empty"></td>
+			<td class="empty"></td>
+			<td class="empty"></td>
+			<td class="empty"></td>
+			<td class="empty"></td>
+			<td class="empty"></td>
+			<td class="empty"></td>
+			<td class="empty"></td>
+			<td class="empty"></td>
+			<td id="e5" class="element"></td>
+			<td id="e6" class="element"></td>
+			<td id="e7" class="element"></td>
+			<td id="e8" class="element"></td>
+			<td id="e9" class="element"></td>
+			<td id="e10" class="element"></td>
+		</tr>
+		<tr>
+			<th class="number">3</th>
+			<td id="e11" class="element"></td>
+			<td id="e12" class="element"></td>
+			<td class="empty"></td>
+			<td class="empty"></td>
+			<td class="empty"></td>
+			<td class="empty"></td>
+			<td class="empty"></td>
+			<td class="empty"></td>
+			<td class="empty"></td>
+			<td class="empty"></td>
+			<td class="empty"></td>
+			<td class="empty"></td>
+			<td id="e13" class="element"></td>
+			<td id="e14" class="element"></td>
+			<td id="e15" class="element"></td>
+			<td id="e16" class="element"></td>
+			<td id="e17" class="element"></td>
+			<td id="e18" class="element"></td>
+		</tr>
+		<tr>
+			<th class="number">4</th>
+			<td id="e19" class="element"></td>
+			<td id="e20" class="element"></td>
+			<td id="e21" class="element"></td>
+			<td id="e22" class="element"></td>
+			<td id="e23" class="element"></td>
+			<td id="e24" class="element"></td>
+			<td id="e25" class="element"></td>
+			<td id="e26" class="element"></td>
+			<td id="e27" class="element"></td>
+			<td id="e28" class="element"></td>
+			<td id="e29" class="element"></td>
+			<td id="e30" class="element"></td>
+			<td id="e31" class="element"></td>
+			<td id="e32" class="element"></td>
+			<td id="e33" class="element"></td>
+			<td id="e34" class="element"></td>
+			<td id="e35" class="element"></td>
+			<td id="e36" class="element"></td>
+		</tr>
+		<tr>
+			<th class="number">5</th>
+			<td id="e37" class="element"></td>
+			<td id="e38" class="element"></td>
+			<td id="e39" class="element"></td>
+			<td id="e40" class="element"></td>
+			<td id="e41" class="element"></td>
+			<td id="e42" class="element"></td>
+			<td id="e43" class="element"></td>
+			<td id="e44" class="element"></td>
+			<td id="e45" class="element"></td>
+			<td id="e46" class="element"></td>
+			<td id="e47" class="element"></td>
+			<td id="e48" class="element"></td>
+			<td id="e49" class="element"></td>
+			<td id="e50" class="element"></td>
+			<td id="e51" class="element"></td>
+			<td id="e52" class="element"></td>
+			<td id="e53" class="element"></td>
+			<td id="e54" class="element"></td>
+		</tr>
+		<tr>
+			<th class="number">6</th>
+			<td id="e55" class="element"></td>
+			<td id="e56" class="element"></td>
+			<td id="Lanthanides" class="element"></td>
+			<td id="e72" class="element"></td>
+			<td id="e73" class="element"></td>
+			<td id="e74" class="element"></td>
+			<td id="e75" class="element"></td>
+			<td id="e76" class="element"></td>
+			<td id="e77" class="element"></td>
+			<td id="e78" class="element"></td>
+			<td id="e79" class="element"></td>
+			<td id="e80" class="element"></td>
+			<td id="e81" class="element"></td>
+			<td id="e82" class="element"></td>
+			<td id="e83" class="element"></td>
+			<td id="e84" class="element"></td>
+			<td id="e85" class="element"></td>
+			<td id="e86" class="element"></td>
+		</tr>
+		<tr>
+			<th class="number">7</th>
+			<td id="e87" class="element"></td>
+			<td id="e88" class="element"></td>
+			<td id="Actinides" class="element"></td>
+			<td id="e104" class="element"></td>
+			<td id="e105" class="element"></td>
+			<td id="e106" class="element"></td>
+			<td id="e107" class="element"></td>
+			<td id="e108" class="element"></td>
+			<td id="e109" class="element"></td>
+			<td id="e110" class="element"></td>
+			<td id="e111" class="element"></td>
+			<td id="e112" class="element"></td>
+			<td id="e113" class="element"></td>
+			<td id="e114" class="element"></td>
+			<td id="e115" class="element"></td>
+			<td id="e116" class="element"></td>
+			<td id="e117" class="element"></td>
+			<td id="e118" class="element"></td>
+		</tr>
+	</table>
+	<table>
+		<tr class="Lanthanides">
+			<td class="annotation">*ランタノイド</td>
+			<td id="e57" class="element"></td>
+			<td id="e58" class="element"></td>
+			<td id="e59" class="element"></td>
+			<td id="e60" class="element"></td>
+			<td id="e61" class="element"></td>
+			<td id="e62" class="element"></td>
+			<td id="e63" class="element"></td>
+			<td id="e64" class="element"></td>
+			<td id="e65" class="element"></td>
+			<td id="e66" class="element"></td>
+			<td id="e67" class="element"></td>
+			<td id="e68" class="element"></td>
+			<td id="e69" class="element"></td>
+			<td id="e70" class="element"></td>
+			<td id="e71" class="element"></td>
+		</tr>
+		<tr class="Actinides">
+			<td class="annotation">**アクチノイド	</td>
+			<td id="e89" class="element"></td>
+			<td id="e90" class="element"></td>
+			<td id="e91" class="element"></td>
+			<td id="e92" class="element"></td>
+			<td id="e93" class="element"></td>
+			<td id="e94" class="element"></td>
+			<td id="e95" class="element"></td>
+			<td id="e96" class="element"></td>
+			<td id="e97" class="element"></td>
+			<td id="e98" class="element"></td>
+			<td id="e99" class="element"></td>
+			<td id="e100" class="element"></td>
+			<td id="e101" class="element"></td>
+			<td id="e102" class="element"></td>
+			<td id="e103" class="element"></td>
+		</tr>
+	</table>
+</body>
+<script>
+elemArray = $('.element');
+for (i_counter=0; i_counter<elemArray.length; i_counter++) {
+	id = $(elemArray[i_counter]).attr('id');
+	if (id == 'Lanthanides') {
+		color = "#FFBFFF";
+		$(elemArray[i_counter]).html('*');
+		$(elemArray[i_counter]).attr('title','ランタノイド');
+	} else if (id == 'Actinides') {
+		color = "#FF99CC";
+		$(elemArray[i_counter]).html('**');
+		$(elemArray[i_counter]).attr('title','アクチノイド');
+	} else {
+		z = id.split('e')[1]; // ID名の先頭の'e'を取り除いた数値:元素番号
+		switch (element[z]["type"]) {
+			case "Alkali metals":
+			color = "#FF6666";
+			break;
+			case "Alkaline earth metals":
+			color = "#FFDEAD";
+			break;
+			case "Lanthanides":
+			color = "#FFBFFF";
+			break;
+			case "Actinides":
+			color = "#FF99CC";
+			break;
+			case "Transition metals":
+			color = "#FFC0C0";
+			break;
+			case "Post-transition metals":
+			color = "#CCCCCC";
+			break;
+			case "Metalloids":
+			color = "#CCCC99";
+			break;
+			case "Other non-metals":
+			color = "#A0FFA0";
+			break;
+			case "Halogens":
+			color = "#FFFF99";
+			break;
+			case "Noble gases":
+			color = "#C0FFFF";
+			break;
+			case "Unknown chemical properties":
+			color = "#E8E8E8";
+			break;
+			default:
+			color = "#FFFFFF";
+			break;
+		}
+		$(elemArray[i_counter]).html(element[z]["Sym"]);
+		$(elemArray[i_counter]).attr('title',element[z]["Z"]+': '+element[z]["Japanese"]);
+		if(element[z]["Sym"].length >= 3) {
+			$(elemArray[i_counter]).css('font-size','10px'); // 3文字以上の元素記号の表示を縮小
+		}
+	}
+	$(elemArray[i_counter]).css('background','-moz-linear-gradient(left top, '+color+', #666)');
+	$(elemArray[i_counter]).css('background','-webkit-gradient(linear, left top, right bottom, from('+color+'), to(#666))');}
+
+</script>
+</html>

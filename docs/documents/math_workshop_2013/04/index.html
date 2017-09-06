@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>案件で使える数学講座 第4回 ～物体の運動 その3～</title>
+</head>
+
+<body>
+<h1>案件で使える数学講座 第4回 ～物体の運動 その3～</h1>
+<h2>今回の目標</h2>
+<ul>
+<li>漸化式と一般式の違いを復習する</li>
+</ul>
+
+<h2>復習</h2>
+<p><a href="../03">前回の資料</a>の運動は漸化式によるものです。</p>
+<p>具体的には、
+<pre><code>
+x += vx*dt;
+y += vy*dt;
+</code></pre>
+の2式です。</p>
+
+<h2>一般式による衝突</h2>
+<p>絶対値関数と切り捨てを使って等速直線運動による衝突運動を記述できます。（式を憶える必要はないです。）</p>
+<p><a href="http://en.wikipedia.org/wiki/Triangle_wave" target="_blank"><img src="http://upload.wikimedia.org/math/d/1/e/d1e9dfe4034c4572a27c5910e010da03.png"></a></p>
+<script type="text/javascript" src="http://jsdo.it/blogparts/qLgV/js?width=465&height=496&view=screenshot"></script>
+
+<p>サンプルプログラムのシークバーをドラッグすると、時間を変化させられます。
+漸化式では時間を巻き戻すときに逆計算を何度も繰り返す必要がありますが、
+一般式を使えば一度に計算できます。</p>
+
+<h2>演習</h2>
+<p>ボールをx方向にも運動させ、y方向と同じく衝突するようにしてください。</p>
+
+<h2>まとめ</h2>
+<p>物体の跳ね返りは一般式で表すことができます。</p>
+<p>一般式で表すことによって、絶対時間での位置計算が容易に行えます。</p>
+<p>とはいえ、式が複雑になったりそもそも表現不能の時もあるので、ケースバイケースで使いましょう。</p>
+
+<pre class="memo">
+</pre>
+
+<p><a href="../">勉強会トップ</a></p>
+<p><a href="/">Home</a></p>
+</body>
+</html>

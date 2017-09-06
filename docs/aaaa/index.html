@@ -1,0 +1,72 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja" dir="ltr" xmlns:og="http://ogp.me/ns#" xmlns:fb="http://www.facebook.com/2008/fbml">
+<head>
+<meta charset="utf-8">
+<meta property="og:title" content="ああああブックマークレット" />
+<meta property="og:description" content="好きなページを「ああああ」に変えるブックマークレット" />
+<meta property="og:url" content="http://butchi.jp/aaaa" />
+<meta property="og:image" content="http://butchi.jp/aaaa/ogp.png" />
+<title>ああああブックマークレット</title>
+<link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/ja_JP/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<header>
+<ul class="social">
+	<li><a href="http://b.hatena.ne.jp/entry/http://butchi.jp/aaaa" class="hatena-bookmark-button" data-hatena-bookmark-title="ああああブックマークレット" data-hatena-bookmark-layout="simple-balloon" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script></li>
+	<li><div class="fb-like" data-href="http://butchi.jp/aaaa" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false" data-font="arial"></div></li>
+	<li><a href="https://twitter.com/share" class="twitter-share-button" data-via="butchi_y" data-lang="ja">ツイート</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></li>
+</ul>
+</header>
+
+<h1>ああああブックマークレット</h1>
+<p class="link">
+<a id="aaaaLink">ああああ</a>
+</p>
+
+<h2>使い方</h2>
+<p>上のリンクをお気に入りバーにドラッグして登録、あとは好きなページを開いてお気に入りの「ああああ」をクリック</p>
+<p>※スマホでは実行が面倒なのでPCでお楽しみください。</p>
+
+<h2>使用イメージ</h2>
+<img src="sample_image.png" width="610" height="377" alt="使用イメージ" />
+
+<h2>ソース</h2>
+<div class="source">
+<textarea id="sourceTxt" cols="100" rows="10">
+</textarea>
+
+<div class="author">by <a href="http://butchi.jp/">Butchi</a></div>
+
+<script>
+var aaaa = 'javascript:(function(root){(function(node){while(node!=null){if(node.nodeValue){node.nodeValue=node.nodeValue.replace(/[ぁぃぅぇぉゃゅょっゎァィゥェォャュョッヮヵヶ]/g, "ぁ").replace(/[^\\s,.()ー～…、。！？・←→「」『』【】（）ぁ]/g, "あ");}arguments.callee(node.firstChild);node=node.nextSibling;}})(root.firstChild);})(document.body);';
+document.getElementById('sourceTxt').innerHTML = aaaa;
+document.getElementById('aaaaLink').href = aaaa.replace(/\"/g, '%22');
+</script>
+</div>
+
+<!--Google Analystics--><script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-2779957-3']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script><!--/Google Analystics-->
+</body>
+</html>
