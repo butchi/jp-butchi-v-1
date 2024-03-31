@@ -1,7 +1,16 @@
 <html>
-<!-- -02 ‰¹—Ê’²®Amp3’Ç‰Á -->
+<!-- -02 ï¿½ï¿½ï¿½Ê’ï¿½ï¿½ï¿½ï¿½Amp3ï¿½Ç‰ï¿½ -->
 <head>
-<title>”üº•ñ</title>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-15HC91J6CW"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-15HC91J6CW');
+</script>
+<title>ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</title>
 <style>
 h1 {
 	padding: 10px;
@@ -25,25 +34,25 @@ h1 {
 }
 #gender.male:after {
 	background-color: #99f;
-	content: "‰";
+	content: "ï¿½ï¿½";
 }
 #gender.female:after {
 	background-color: #f99;
-	content: "Š";
+	content: "ï¿½ï¿½";
 }
 #gender.other:after {
 	background-color: #999;
-	content: "H";
+	content: "ï¿½H";
 }
 
 </style>
 </head>
 
 <body>
-<h1>”üº•ñ</h1>
+<h1>ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</h1>
 
 <div id="time"></div>
-<div id="announcer"><span class="announcerLabel">“Ç‚İè: </span><span id="gender"></span><span id="name"></span></div>
+<div id="announcer"><span class="announcerLabel">ï¿½Ç‚İï¿½: </span><span id="gender"></span><span id="name"></span></div>
 
 <audio id="beep0">
    <source src="audio/beep/s1.wav" type="audio/wav">
@@ -95,7 +104,7 @@ setInterval(function() {
 	document.getElementById('time').innerHTML = timeTxt;
 	
 	var beep;
-	// •b‚Ì‹@ŠB‰¹
+	// ï¿½bï¿½Ì‹@ï¿½Bï¿½ï¿½
 	if (sec % 10 == 0) {
 		beep = document.getElementById('beep2');
 	} else if ( (sec == 57) || (sec == 58) || (sec == 59) ) {
@@ -111,27 +120,27 @@ setInterval(function() {
 		switch (voiceNo) {
 			case 0:
 			announcerGender = "female"
-			announcerTxt = "–_“Ç‚İ‚¿‚á‚ñ—«1";
+			announcerTxt = "ï¿½_ï¿½Ç‚İ‚ï¿½ï¿½ï¿½ñ—ï¿½1";
 			break;
 			
 			case 1:
 			announcerGender = "male"
-			announcerTxt = "–_“Ç‚İ‚¿‚á‚ñ’j«1";
+			announcerTxt = "ï¿½_ï¿½Ç‚İ‚ï¿½ï¿½ï¿½ï¿½jï¿½ï¿½1";
 			break;
 			
 			case 2:
 			announcerGender = "female"
-			announcerTxt = "–_“Ç‚İ‚¿‚á‚ñ—«2";
+			announcerTxt = "ï¿½_ï¿½Ç‚İ‚ï¿½ï¿½ï¿½ñ—ï¿½2";
 			break;
 			
 			case 3:
 			announcerGender = "male"
-			announcerTxt = "–_“Ç‚İ‚¿‚á‚ñ’j«2";
+			announcerTxt = "ï¿½_ï¿½Ç‚İ‚ï¿½ï¿½ï¿½ï¿½jï¿½ï¿½2";
 			break;
 			
 			default:
 			announcerGender = "other"
-			announcerTxt = "‰r‚İl’m‚ç‚¸";
+			announcerTxt = "ï¿½rï¿½İlï¿½mï¿½ç‚¸";
 			break;
 		}
 		document.getElementById('gender').setAttribute('class', announcerGender);
